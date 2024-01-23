@@ -1,0 +1,18 @@
+README
+
+The files in this directory can be used to set up a 1-year benchmark run
+directory. Follow these steps:
+
+   1. Create a merra2_4x5_fullchem_benchmark run directory
+
+   2. Copy the setup_1yr_run script from this directory into your newly
+      created run directory
+
+   3. Open setup_1yr_run and modify BM_VERSION, START_YR, START_MONTH, N_MONTHS
+      as needed
+
+   4. Execute "./setup_1yr_run"
+
+
+Melissa Sulprizio
+10 Aug 2017

@@ -1,0 +1,20 @@
+#!/bin/csh
+source ~/.cshrc.alias
+set dates =(910917 910919 911004 911006 911008 911010 911012 911014 911102\
+            911208 911212 911214 920104 920106 920108 920112 920116 920120\
+            920213 920215 920217 920222 920315 920318 920320 920322 920326)
+if(-e merge.whole.aase2_all.log) rm merge.whole.aase2_all.log
+if(-e merge.whole.aase2_all) rm merge.whole.aase2_all
+foreach date ($dates)
+	.merge.whole $date
+	cat merge.whole.$date.log >> merge.whole.aase2_all.log
+	if(-e merge.whole.$date && ! -e merge.whole.aase2_all) then 
+		cp merge.whole.$date merge.whole.aase2_all
+	else if(-e merge.whole.$date) then
+		if(-e tmp.tmp) rm tmp.tmp # Strip first 3 lines & append
+		sed -e '1,3d' merge.whole.$date > tmp.tmp
+		cat tmp.tmp >> merge.whole.aase2_all
+	endif
+	cat blank.line >> merge.whole.aase2_all.log
+end
+exit

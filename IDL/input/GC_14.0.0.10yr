@@ -1,0 +1,27 @@
+###############################################################################
+#####         INPUT FILE FOR 1-YEAR BENCHMARK PLOTTING PROGRAMS           #####
+#####    Define dirs, model names, and other relevant quantities here     #####
+#####                                                                     #####
+##### V[1/2] = Version Number                                             #####
+##### D[1/2] = Directory with files                                       #####
+##### L[1/2] = Label used to identify netCDF file names                   #####
+##### M[1/2] = Model name                                                 #####
+##### R[1/2] = Model resolution                                           #####
+##### Y[1/2] = Year of simulation                                         #####
+###############################################################################
+
+##### Parameters for 1st model #####
+V1: GCC_13.0.0
+D1: /n/holyscratch01/jacob_lab/msulprizio/GC/benchmarks/10yr/13.0.0/GCClassic/OutputDir/
+L1: GEOSChem.SpeciesConc.2019
+M1: MERRA2
+R1: 4
+Y1: 2019
+
+##### Parameters for 2nd model #####
+V2: GCC_14.0.0
+D2: /n/holyscratch01/jacob_lab/msulprizio/GC/benchmarks/10yr/14.0.0-rc.3/GCClassic/OutputDir/
+L2: GEOSChem.SpeciesConc.2019
+M2: MERRA2
+R2: 4
+Y2: 2019

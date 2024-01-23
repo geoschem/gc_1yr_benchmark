@@ -1,0 +1,342 @@
+Documentation on profiles of trace gases derived from aircraft data.
+
+Jennifer Logan and Inna Megretskaia, March, 1999.
+
+Updated in Sept. 2000 with PEM-Tropics B data.
+Updated in February, 2003, with TRACE-P data.
+
+This supercedes the files that were contained in 
+/users/ctm/yhw/gmg/aircraft/profiles
+
+This directory contains results of an analysis of aircraft data, and
+provides vertical profiles over selected geographic regions, as described in
+more detail below.
+
+Every subdirectory of this directory contains mean profiles for given
+specie for up to 39 regions and a postscript file with boxplots of
+these mean profiles for different altitudes.  
+
+=======
+regions
+======
+This ASCII file contains 
+the latitude/longitude boundaries of the regions over which the aircraft
+data were averaged, the month in which the data were taken, and the region
+number.
+
+=============
+region.map.ps
+============
+The postscipt file "region.map.ps"  shows the regions on a world map.
+
+==============================
+NO, ACET, PAN, C2H6, H2O2,HNO3
+==============================
+Each subdirectory contains data files called Name.specie.new.pem,
+Name.specie.new.gte, Name.specie.new.aase, Name.specie.new.success, 
+Name.specie.new.sonex, Name.sum.specie.new.strat and 
+Name.win.specie.new.strat, where the last part of the name corresponds to 
+different missions (see below).  Name is the same as name listed in file 
+regions and specie= NO, ACET, PAN, C2H6, H2O2,HNO3.
+
+=================
+Name.specie.new.*
+================
+Every line of the data file has 11 numbers which correspond to:
+
+1.  PRESSURE
+2.  NUMBER OF POINTS
+3.  MONTHLY MEAN VALUE
+4.  MONTHLY MEDIAN VALUE
+5.  STANDARD DEVIATION
+6.  10TH PERCENTILE
+7.  25TH PERCENTILE
+8.  75TH PERCENTILE
+9.  90TH PERCENTILE
+10. MIN. VALUE
+11. MAX. VALUE
+
+Vertical Scale:
+The pressures are provided for convenience, but NOTE that the data were
+provided keyed to altitude, and the data were binned in altitudes, for
+0-1, 1-2, ... 11-12 km.  Thus the pressures correspond to altitudes
+0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5, 10.5, 11.5 km, which
+are midpoints of 1 km boxes.  These altitudes were converted to pressure
+with the formula
+
+  pressure = 1013*(1.-2.257e-5*(altitude*1.e3))^5.2533
+
+by Yuhang Wang.  This formula gives an excellent approximation to the US
+Standard Atmosphere for 45 N, Spring/Fall.  
+
+The GTE date are all given in pressure altitude, which uses the US
+standard atmosphere.  Thus this formula is the appropriate way to
+convert pressure to altitude for all latitudes (which would not be the
+case had geometric altitude been used).
+
+
+=========================
+Name.specie.new.*.wo.filt
+=========================
+
+These file have the same structure as Name.specie.new.*. No selection
+for stratospheric air was made to select points used in analysis to obtain
+these files, so in general they are based on more data points than the
+"filtered" ones. We considered air at above 6 km to be stratospheric if it 
+has ozone values > 100 ppbv.
+
+================
+Name.profile.ps
+===============
+This postscript file provides a plot of the profile for the various regions,
+and gives a box plot with the 10 and 90th percentiles (extreme), 25th and
+75th  percentiles (box), median (vertical line) and mean (x).  The number of
+points at each level is also given.
+
+
+ORIGIN OF THE DATA USED IN THESE PROFILES.
+
+The aircraft profiles are an update of those shown in Wang et al.  (JGR,
+103, 10,727-10,756, 1998).  The data used in that paper by Jennifer
+Logan and Yuhang Wang were provided by Scott Smyth, who was working
+with John Bradshaw and Scott Sandholm at Georgia Tech. They provided (in 
+spring 1996) files containing GTE and AASE data, species by species, made 
+from the Georgia Tech merges.  The files were provided as "dumped" Splus 
+objects, and may be found in /data/gatech/....   JAL has the documentation
+on the Splus files.  The files contained the concentrations, latitude,
+longitude, altitude, and a filter for whether the data was in the
+stratosphere.  The NO data had been filtered for solar zenith angle
+less than 70 degrees. The data had also been filtered for stratospheric
+air, using the conditions O3>120 and CO<80 and N2O<308.
+
+The files from Georgia Tech contained data from the following
+missions:  ABLE2A, ABLE3A, ABLE3B, CITE1A, CITE1B, CITE2, CITE3,
+PEM-WA, and TRACE in one set of files labeled "gte" (all missions in
+northern summer and autumn), and ABLE2B, PEM-WB and AASE in another
+labelled "aase" (all in Feb. or May (ABLE 2B).
+
+In Dec.98/Jan99  we added an analysis of data from PEM-Tropics A, using
+the Harvard merges, and updated the files for the other regions to
+include more statistics (n, mean, max, std. dev., percentiles (10, 25,
+75, 90th), and max and min).  The user can now see how many data points
+were averaged together in each region.  The regions used by YHW were
+slightly modified in a few cases to increase n, and the box over S.
+Africa was divided in two, to give a northern region that was an
+area with active fires, and a southern region where there were no
+active fires.  For PEM-Tropics A there are now 6 new regions, all using
+the DC-8 data.  We did not use the P3B data which goes up to 6-7 km.
+Inna has the analysis programs for PEM-Tropics, and for making the new
+files for the earlier missions.
+
+In Jan99/Feb99 analysis of data from 3 more missions was done - SONEX,
+SUCCESS and STRAT missions. There is not much data at lower altitudes for
+these missions, on the other hand there are many points at higher
+altitudes, which is not typical for other missions. Merges created by
+Lyatt Jaegle with Harvard program were used. Splus objects with selected
+variables were created from the ASCII files and these objects were later
+used to create monthly profiles. Six regions were selected altogether,
+2 for each mission. Data for STRAT missions were diveded into 2 categories 
+- "summer" (96/07/22 - 96/08/07, 96/09/13) and "winter" (95/10/20 - 95/11/09,
+96/01/26 - 96/02/15 and 96/12/02-96/12/13).
+
+PEM-Tropics B profiles were added at a later date, using the same regions as
+for PEM-Tropics A if appropriate.
+
+In February of 2003 vertical profles were made for TRACE-P mission. For
+information about this compaign, go to the end of this README.
+
+================
+NO subdirectory:
+================
+For PEM-Tropics A, STRAT, SUCCESS and SONEX profiles 1-min merges were 
+used (ASCII files /users/trop/mgs/terra/chem1d/INPUT/dc8_1min.data,
+ ~lyj/data/strat/1m*da1 (~iam/amalthea/nox/1m.dat1.all),  
+~lyj/data/success/1M*DA1 (~iam/amalthea/nox/1M.DA1.ALL) and
+~iam/amalthea/nox/sonex.1m.all correspondingly).
+For success mission to filter out the spikes due to fresh aircraft exchaust
+the following filter was used:
+   If NO was greater than 300 pptv and if CO2 was higher than a background
+   level (of 295.0+0.2333*N2O), then these points correspond to fresh
+   aircraft exhaust where both NO and CO2 where enhanced.
+In addition, three flights of the DC-8 were almost entirely dedicated to flying
+behind a 747 aircraft. These flights (96/05/03, 96/05/04, 96/05/07) were
+eliminated from analysis of NO.
+   For Pem Tropics B 10 sec merges were used (for both dc8 and p3b), Splus
+objects are ~iam/.SGIData/data10sec.b and ~iam/.SGIData/data10sec.b.p.
+
+==================
+HNO3 subdirectory:
+==================
+For PEM-Tropics A acid merges were used (Splus object 
+/data/pem-t/dc8/.SGIData/dataaacid) and for SONEX HNO3 merges were used
+(ASCII file ~iam/amalthea/nox/H3.sonex.all).
+   For Pem-Tropics B HNO3 (*nhatg*) merges were used, Splus objects are
+~iam/.SGIData/datahno3.b and ~iam/.SGIData/datahno3.b.p.
+
+=================
+PAN subdirectory:
+=================
+For PEM-Tropics A and for SONEX PAN merges were used (Splus object 
+/data/pem-t/dc8/.SGIData/datapan and ASCII file 
+~iam/amalthea/nox/PAN.sonex.all correspondingly).
+   For Pem-Tropics B PAN merges were used (mrg_shgc1*), it was done
+for dc8 only. Splus object is ~iam/.SGIData/datapan.b.   
+
+==================
+H2O2 subdirectory:
+==================
+For PEM-Tropics A and for SONEX H2O2 merges were used (Splus object 
+/data/pem-t/dc8/.SGIData/datah2o2 and ASCII file 
+~iam/amalthea/nox/H2O2.sonex.all correspondingly).
+   For PEM-Tropics H2O2 merges were used (made by iam). ASCII files are
+/users/trop/iam/amalthea/merges/mrg_hbper*, Splus objects - 
+~iam/amalthea/.SGIData/datah2o2.b and  ~iam/amalthea/.SGIData/datah2o2.b.p.
+
+==================
+C2H6 subdirectory:
+==================
+Hydrocarbon merges were used for PEM-Tropics A, SONEX and STRAT
+(Splus object /data/pem-t/dc8/.SGIData/datahc and ASCII files
+~iam/amalthea/nox/HC.sonex.all and ~iam/amalthea/nox/hc.strat.all
+correspondingly).
+  Hydrocarbon merges were also used for PEM-Tropics B. Splus objects
+are datahc.b and datahc.b.p.  
+
+==================
+ACET subdirectory:
+==================
+Acetone profiles for SONEX mission were obtained from acetone merge
+(ASCII file ~iam/amalthea/nox/KT.sonex.all
+   Acetone merges (ASCII files ~/amalthea/merges/mrg_shgc3* were
+used for Pem-Tropics B, for dc8 aircraft only. Splus object is
+dataacet.b.
+ 
+===============================
+CO, O3, ALK4, C3H8, ETHE, PRPE
+===============================
+
+Each of these subdirectories is similar to ones described above. The only
+difference is that we did not have Splus objects provided by Georgia Tech
+for these species, so all the objects were made by Inna Megretskaia.
+
+======
+CO, O3 
+======
+For PEM-Tropics A mission 10-sec merges were used (Splus object 
+/data/pem-t/dc8/.SGIData/data10sec)
+Same for PEM-Tropics B 10-sec merges were used (Splus objects 
+iam/.SGIData/data10sec.b and iam/.SGIData/data10sec.b.p)
+For Trace-A mission 10-sec merges were used (object
+~iam/amalthea/.SGIData/datatraceA)
+For ABLE2A non-standard merges from /data/gatech/GTE_NEW/able_2a were used 
+(object ~iam/.SGIData/dataa2a) 
+For ABLE2B non-standard merges from /data/gatech/GTE_NEW/able_2b were used 
+(object ~iam/.SGIData/dataa2b) 
+For STRAT 1-min merges were used (ASCII files in ~lyj/data/strat, Splus
+objects - ~iam/.SGIData/amalthea/datastrat.sum and
+~iam/.SGIData/amalthea/datastrat.win)
+For SONEX 1-min merges were used (ASCII files in ~lyj/data/sonex, Splus
+object ~iam/.SGIData/amalthea/datasonex)
+For SUCCESS 1-min merges were used (ASCII files in ~lyj/data/success, Splus
+object ~iam/.SGIData/amalthea/datasuccess)
+FOR PEM-WA 90-sec merges from /data/gatech/GTE_NEW/pwa were used (Splus
+object is ~iam/amalthea/.SGIData/datapwa)
+FOR PEM-WB 10-sec merges from /data/gatech/GTE_NEW/pwb were used (Splus
+object is ~iam/amalthea/.SGIData/datapwb10s)
+
+=======================
+ALK4, C3H8, ETHE, PRPE
+=======================
+
+To create vertical profiles in these subdirectories, data from 4 missions
+- PEM-Tropics A, B, STRAT and SONEX were used. (PRPE measurements were not
+available for STRAT mission).
+
+For PEM-Tropics A, B missions, hydrocarbon merges were used (Splus objects 
+/data/pem-t/dc8/.SGIData/datahc, ~iam/.SGIData/datahc.b and 
+~iam/amalthea/.SGIData/datahc.b.p)
+For STRAT hydrocarbon merges were used (ASCII files in ~lyj/data/strat, Splus
+objects - ~iam/.SGIData/datastrathc.sum and ~iam/.SGIData/datastrathc.win)
+For SONEX hydrocarbon merges were used (ASCII files used to be in 
+~lyj/data/sonex, Splus object is ~iam/.SGIData/amalthea/datasonex.hc)
+
+====
+CH4
+====
+
+For Trace-P 10 sec merges were used (in
+/data/tracep/merge_final_v3/MERGES/DC8_LARC/10sec and
+/data/tracep/merge_final_v3/MERGES/P3B_LARC/10sec. Splus objects are
+~iam/.SGIData/data10s.tracep and ~iam/.SGIData/data10s.tracep.p3b.
+For ABLE-3A and ABLE-3B 10-second merges were used (Splus objects
+dataable3a.10s and dataable3b.10s).
+For Pem-Tropics A and B 10 sec merges were used (objects data10sec and 
+data10sec.b)
+For CITE-2 60-sec merge was used.
+
+======
+CH3OH
+======
+
+Data for 4 missions were used - SONEX, PEM WEST B, PEM TROPICS B and 
+TRACE-P. 
+   For SONEX acetone merge was used (original merges are in 
+/data/sonex/merges, Splus object ~iam/.SGIData/data.sonex.acet)
+   For PEM WEST B I had to use 30 second merge (merges are in
+/as/data/master/dsk/data1/gatech/GTE/pem.west.b/30_sec, Splus object
+is ~iam/.SGIData/data.pwb.30s), so many numbers in this file are
+repeated up to 5 times and number of points for every bin is in
+some sense misleading. I tried to use PAN merge first, but it has only
+2 non-missing values for CH3OH.
+   For PEM TROPICS B I used the acetone merge (from /data/pem-tb/dc8/merges,
+Splus object is ~iam/.SGIData/dataacet.b). There is no acetone data
+for P3B, so I used only DC8 flights.
+   For TRACE-P I used oxygenate merges from 
+/data/tracep/merge_final_v3/MERGES/DC8_LARC/SHGC3, my Splus object is
+~iam/.SGIData/dataoxy.tracep. This merge was done for DC8 aircraft only.
+
+====
+CO2
+====
+
+Data for 4 missions were used -  PEM WEST B and TRACE-P.
+
+   For PEM WEST B 30 second merge was used, because 10 sec merge does not
+have CO2 (merges are in /as/data/master/dsk/data1/gatech/GTE/pem.west.b/30_sec,
+ Splus object is ~iam/.SGIData/data.pwb.30s.
+   For TRACE-P I used 10 sec merge (for both dc8 and p3b flights),
+merges are in /data/tracep/merge_final_v3/MERGES/DC8_LARC/10sec and
+/data/tracep/merge_final_v3/MERGES/P3B_LARC/10sec. Splus objects are
+~/.SGIData/data10s.tracep and ~/.SGIData/data10s.tracep.p3b.
+
+***************************************************************************
+
+   February 12, 2003.
+   TRACE-P data.
+
+All the merges used for TRACE-P vertical profiles can be found in 
+/data/tracep/merge_final_v3/MERGES/DC8_LARC and 
+/data/tracep/merge_final_v3/MERGES/P3B_LARC. Most species were
+measured for both aircrafts, some were measured only on DC8 flights.
+   For CO, NO and CH4 I used 10s merges, made specially for us (with
+smaller number of species, than all other merges. Splus objects are
+~iam/.SGIData/data10s.tracep and ~iam/.SGIData/data10s.tracep.p3b
+correspondingly.
+   For NO and H2O2 1 minute merges were used. H2O2 was measured only
+on DC8 flights. Splus objects are ~iam/.SGIData/data1min.tracep and 
+~iam/.SGIData/data1min.tracep.p3b.
+   For CH3OH and ACET oxygenate merge was used 
+(/data/tracep/merge_final_v3/MERGES/DC8_LARC/SHGC3/final-v3-mrgshgc3d_all.trp)
+Splus object is  ~iam/.SGIData/dataoxy.tracep.
+   Hydrocarbon merges were used for ALK4, C2H6, C3H8, ETHE, PRPE and 
+C2H2. Corresponding Splus objects are ~iam/.SGIData/datahc.tracep and
+~iam/.SGIData/datahc.tracep.p3b.
+   5 minute merge was used for PAN (Splus objects are 
+~iam/.SGIData/data5min.tracep and ~iam/.SGIData/data5min.tracep).  This was on
+Singh's recommendation, as there was no PAN-based merge.
+   /data/tracep/merge_final_v3/MERGES/DC8_LARC/NHMIC/final-v3-mrgnhmicd_all.trp
+was used for HNO3, it was measured only on DC8. (Splus object is
+~iam/.SGIData/data.acid.tracep). (Talbot's recommendation).
+   Regions for TRACE-P were added to ASCII file regions.
+
+*************************************************************************

@@ -1,0 +1,11 @@
+#!/bin/csh
+source ~/.cshrc.alias
+set dates =(911208 911212 911214 920104 920106 920108 920112 920116 920120\
+            920213 920215 920217 920222 920315 920318 920320 920322 920326)
+if(-e merge.clo_burk2.aase2_all.log) rm merge.clo_burk2.aase2_all.log
+foreach date ($dates)
+	.merge.clo_burk2 $date
+	cat merge.$date.log >> merge.clo_burk2.aase2_all.log
+	if($date != $dates[1]) cat blank.line >> merge.clo_burk2.aase2_all.log
+end
+exit

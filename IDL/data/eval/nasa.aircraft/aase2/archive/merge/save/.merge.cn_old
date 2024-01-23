@@ -1,0 +1,71 @@
+#!/bin/csh
+source ~rjs/.cshrc.alias
+if(-e merge.$1) rm merge.$1
+if(-e eph.1min.$1) rm eph.1min.$1
+if(-e o3.tmp) rm o3.tmp
+set infile1=/data/aase2/archive/er2/'o3'$1.ea1.Z
+if(-e $infile1) then
+	zcat $infile1 > o3.tmp
+endif
+if(-e mm.tmp) rm mm.tmp
+set infile2=/data/aase2/archive/er2/'mm'$1.ea1.Z
+if(-e $infile2) then
+	zcat $infile2 > mm.tmp
+endif
+if(-e wv.tmp) rm wv.tmp
+set infile3=/data/aase2/archive/er2/'wv'$1.ea1.Z
+if(-e $infile3) then
+	zcat $infile3 > wv.tmp
+endif
+if(-e n2.tmp) rm n2.tmp
+set infile4=/data/aase2/archive/er2/'n2'$1.ea1.Z
+if(-e $infile4) then
+	zcat $infile4 > n2.tmp
+endif
+if(-e ny.tmp) rm ny.tmp
+set infile5=/data/aase2/archive/er2/'ny'$1.ea1.Z
+if(-e $infile5) then
+	zcat $infile5 > ny.tmp
+endif
+if(-e no.tmp) rm no.tmp
+set infile6=/data/aase2/archive/er2/'no'$1.ea1.Z
+if(-e $infile6) then
+	zcat $infile6 > no.tmp
+endif
+if(-e fp.tmp) rm fp.tmp
+set infile7=/data/aase2/archive/er2/'fp'$1.ea1.Z
+if(-e $infile7) then
+	zcat $infile7 > fp.tmp
+endif
+if(-e cl.tmp) rm cl.tmp
+set infile8=/data/aase2/archive/er2/'cl'$1.ea1.Z
+if(-e $infile8) then
+	zcat $infile8 > cl.tmp
+endif
+if(-e fa.tmp) rm fa.tmp
+set infile9=/data/aase2/archive/er2/'fa'$1.ea1.Z
+if(-e $infile9) then
+	zcat $infile9 > fa.tmp
+endif
+if(-e cn.tmp) rm cn.tmp
+set infile10=/data/aase2/archive/er2/'cn'$1.ea1.Z
+if(-e $infile10) then
+	zcat $infile10 > cn.tmp
+endif
+if(-e gc.tmp) rm gc.tmp
+set infile11=/data/aase2/archive/er2/'gc'$1.ea1.Z
+if(-e $infile11) then
+	zcat $infile11 > gc.tmp
+endif
+if(-e al.tmp) rm al.tmp
+set infile12=/data/aase2/archive/er2/'al'$1.ea1.Z
+if(-e $infile12) then
+	zcat $infile12 > al.tmp
+endif
+
+echo $1 | ~rjs/aase2/merge.aase2.cn_old
+
+chmod g+w merge.$1
+chmod g+w eph.1min.$1
+chmod g+w *.tmp
+

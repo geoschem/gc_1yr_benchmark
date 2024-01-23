@@ -1,0 +1,304 @@
+
+**************************************************************************
+README  README   README  README  README   README   README   README  README
+
+FILE:		./data/co/flask/README
+UPDATE:		30 July 1998
+
+**************************************************************************
+
+Atmospheric CARBON MONOXIDE Mixing Ratios
+NOAA Climate Monitoring and Diagnostics Laboratory
+Cooperative Air Sampling Network, 1988-1997
+
+Data Contributed by:
+
+Paul C. Novelli and Ken A. Masarie
+National Oceanic and Atmospheric Administration (NOAA)
+Climate Monitoring and Diagnostics Laboratory (CMDL), R/E/CG1
+325 Broadway
+Boulder, Colorado, 80303 USA
+
+and
+
+Cooperative Institute for Research in Environmental Sciences (CIRES)
+University of Colorado R/E/CG1
+Boulder, Colorado 80309-0449
+
+Telephone: (PCN) 303 497-6974	(KAM) 303 497-6270
+Electronic Mail: (PCN) pnovelli@cmdl.noaa.gov    (KAM) kmasarie@cmdl.noaa.gov
+                    
+
+*********************************NOTICE************************************
+
+When using the carbon monoxide data in a publication or presentation, please 
+acknowledge the National Oceanic and Atmospheric Administration (NOAA),
+Climate Monitoring and Diagnostics Laboratory (CMDL), Carbon Cycle Group.
+Comments regarding the README and the data files are encouraged.  Send     
+comments to either of the e-mail addresses given above.
+
+To avoid misinterpretation of the measurements, users should read and   
+understand all "README" files before using these data.  NOAA/CMDL has 
+attempted to provide the most precise measurements possible.  We reserve 
+the right to modify these data files if warranted by calibration issues or
+data selection routines.    
+
+
+*********************************RETRIEVAL*********************************
+
+In addition to the text files found in each of the directories, there are 2
+compressed tar files which contain all the files in the corresponding directories,
+for example: complete.tar.Z contains all the files in the directory 'complete'.
+If you want to transfer all the files in a directory, it is much more efficient
+to take the tar file.  To transfer these files take the following steps from
+the ftp prompt.
+
+ftp> binary					! set transfer mode to binary
+
+ftp> get complete.tar.Z				! transfer the file
+
+ftp> bye					! exit ftp
+
+$ uncompress complete.tar.Z			! uncompress your local copy
+
+$ tar xvf complete.tar				! unpack the file
+
+This will create a directory called 'complete' and place each of the
+files in this directory.  Repeat the steps for additional tar files.
+
+
+***************************************************************************
+
+SOURCE AND SCOPE OF THE DATA: CARBON MONOXIDE
+
+
+Individual site files provide CO mixing ratios in parts per billion (ppb) (ppb = 
+(parts in 10*9 by mole fraction = nmole/mole) based on measurements from the NOAA/ 
+CMDL Cooperative Air Sampling Network.  In this directory, data are provided through 
+December 1995 for stations from which the first sample was collected before January 
+1993.
+
+The table below provides a list of all network locations from which samples for    
+CO were collected from 6/88 through 7/98.  This table includes the three letter
+code used to identify each site, the location of the site, latitude and long- 
+itude (in degrees and minutes), the altitude of the sampling location (in meters 
+above mean sea level), the start (and end dates) for sampling CO, the country, and  
+the cooperating agency. Shipboard sampling occured every 5 degrees of latitude 
+for two cruise tracks: the Wellington Star (PAW), and California Star (OPC)
+between North America and Australia or New Zealand, and every 3 degrees 
+latitude between Hong Kong and Singapore for Carla A. Hills and Great Promise
+(SCS) (data not yet available). Sampling frequencies were approximately weekly for
+the fixed sites, and averaged one sample every 3 weeks per latitude zone for PAW  
+and OPC, and about one sample every week per latitude for SCS.  Air samples were 
+collected using two general methods: 1) flushing and then pressurizing glass flasks 
+with a pump.  During sampling a pair of flasks was filled in series. 2) by opening
+a stopcock on an evacuated glass flask. (See Lang et al., 1990 a,b for details 
+of the sampling network, the equipment and procedures)  Data from sites not
+provided in this directory may be available from P. Novelli.
+
+All samples were analyzed for CO at the NOAA/CMDL laboratory in Boulder using 
+gas chromatography with mercuric oxide reduction detection, and all measure- 
+ments are referenced to the CMDL CO scale (Novelli et al., 1991, Novelli et al.,
+1994).
+
+Through most of the period 1988-1991, one flask of a sample pair was 
+analyzed for CO, and when there was suitable pressure remaining in the flask,
+two or more aliquots were analyzed.  We have used the difference in CO
+mixing ratios between the two aliquots as an indication of the precision of 
+the measurement.  Details of the analytical procedures through 1990 are described
+in Novelli et al., 1992. From the beginning of CO measurements in flask samples    
+(mid 1987) to December 1990 we used a single point calibration sequence, as the
+response characteristics of the CO instrument had been shown to be linear over a  
+range of 0 to 1000 ppb CO (Novelli et al., 1991).
+
+In January 1991, we changed instruments used for the analysis of CO in
+flask air samples.  The new instrument exhibited a non-linear response over 
+the range of 0 to 250 ppb CO.  Therefore it was necessary to change from a single-
+point calibration routine to a multiple standard calibration scheme (a multi-
+point calibration procedure based upon that used for calibration of standards,
+as described in Novelli et al., 1994, was also used for flask analysis).
+ 
+In October 1991 we began analyzing a single aliquot from both members of a flask 
+pair (rather than 2 or more aliqouts from a single flask).  The principle reasons    
+for the change were to simplify flask handling procedures (the CMDL carbon dioxide    
+and methane projects also measure both flasks of the sample pair) and to have flask
+pair agreement (the difference in mixing ratio between the two flasks collected 
+simultaneously) as an additional diagnostic to use in evaluating the quality of
+the data.
+
+***************************************************************************
+
+TABLE OF SAMPLING SITES IN THE NOAA/CMDL COOPERATIVE AIR SAMPLING NETWORK
+(sites available are noted by *)
+
+
+*ALT Alert, N.W.T.                    82 27'N  62 31'W   210m  04/92
+    Canada, Environment Canada/Atmospheric Environment Service
+
+*ASC Ascension Island, Atlantic Ocean 07 55'S  14 25'W    54m  02/89
+    U.K., DOD/U.S.A.F. 
+
+*BAL Baltic Sea (Balanga Queen)	      55 30'N  16 40'E     7m  08/92
+    Poland, MIR, Sea Fisheries Institute
+
+*BME St. David's Head, Bermuda        32 22'N  64 39'W    30m  06/91   
+    U.K., Bermuda Biological Station
+
+*BMW Southhampton, Bermuda            32 16'N  65 53'W    30m  06/91   
+    U.K., Bermuda Biological Station (AEROCE)
+
+*BRW Barrow, Alaska                   71 19'N 156 36'W    11m  07/88   
+    U.S.A., NOAA/Environmental Research Laboratory (CMDL Observatory)
+
+*BSC Black Sea, Constanta             44 10'N  28 41'E     3m 10/94 
+    Romania, Romanian Marine Research Institute
+
+*CBA Cold Bay, Alaska                 55 12'N 162 43'W    25m  04/92   
+    U.S.A., NOAA/National Weather Service
+
+*CGO Cape Grim, Tasmania              40 41'S 144 41'E    94m  06/91   
+    Australia, CSIRO, Division of Atmospheric Research
+
+*CHR Christmas Island, Pacific Ocean  01 42'N 157 10'W     3m  12/89   
+    Kiribati, Scripps Institution of Oceanography
+
+*CMO Cape Meares, Oregon              45 29'N 123 58'W    30m  06/92   
+    U.S.A, Oregon Graduate Institute of Science and Technology
+
+CRZ Crozet, Indian Ocean	      46 27'S  51 51'W   120m  01/95
+    France, Centre des Faibles Radioactivities/TAAF
+
+*EIC Easter Island, Pacific Ocean      29 09'S 109 26'W	  50m  01/94
+    Chile, Direccion Meterologica de Chile
+
+*GMI Guam, Mariana Islands            13 26'N 144 47'E     2m  10/89   
+    U.S.A., University of Guam/Marine Laboratory
+
+*GOZ Dewejra Point, Gozo              36 03'N  14 11'E    30m  11/93
+    Malta, Ministry of Environment
+
+*HUN Hegyhatsal                       46 58'N  16 23'E   240M  03/93
+    Hungary, Hungarian Meteorological Agency
+
+*ICE Heimaey, Vestmannaeyjar          63 15'N  20 09'W   100m  10/92   
+    Iceland, Icelandic Meteorological Service
+
+*ITN Grifton, North Carolina          35 21'N  77 23'W   505m  07/92
+    U.S.A., WITN Television
+
+*IZO Tenerife, Canary Islands         28 18'N  16 29'W  2300m  11/91
+    Spain, Izana Observatory
+
+*KEY Key Biscayne, Florida            25 40'N  80 12'W     3m  08/91   
+    U.S.A., NOAA/Environmental Research Laboratory (AOML)
+                    
+*KUM Cape Kumukahi, Hawaii            19 31'N 154 49'W     3m  07/89   
+    U.S.A., NOAA/Environmental Research Laboratory (CMDL)              
+
+*LEF Park Falls, Wisconsin             45 56'N  90 16'W   868m  11/94
+    U.S.A., Wisconsin Educational Communications Board
+
+*MBC Mould Bay, N.W.T.                76 15'N 119 21'W    58m  02/92   
+    Canada, Environment Canada/Atmospheric Environment Service
+
+*MHT Mace Head, County Galway         53 20'N   9 54'W    25m  06/91
+    Ireland, University College Atmospheric Research Station (AEROCE)
+
+*MID Sand Island, Midway              28 13'N 177 22'W     4m  01/92   
+    U.S.A., DOD/U.S.N.
+
+*MLO Mauna Loa, Hawaii                19 32'N 155 35'W  3397m  07/89     
+    U.S.A., NOAA/Environmental Research Laboratory (CMDL Observatory)
+
+NMB Gobebe, Namib Desert              23 34'S  15 02'E    30m  01/97
+    Namibia, Desert Research Foundation of Namibia
+          
+*NWR Niwot Ridge, Colorado            40 03'N 105 35'W  3475m  12/88   
+    U.S.A., University of Colorado/INSTAAR
+
+*OPC Pacific Ocean (California Star)  5 degree lat. intervals  10/93
+    Blue Star Line, Ltd.
+
+*PAW Pacific Ocean (Wellington Star)  5 degree lat. intervals  05/90-07/93
+    Blue Star Line, Ltd.
+
+*PSA Palmer Station, Antarctica        64 55'S  64 00'W    10m  06/94
+    U.S.A., National Science Foundation
+
+*QPC Qinghai Province                 36 16'N 100 55'E  3810m  08/90
+    P.R.C., Chinese Academy of Meteorological Sciences
+
+*RPB Ragged Pt., St. Phillip's Parish 13 10'N  59 26'W     3m  03/92   
+    Barbados, University of Bristol 
+
+*SCS South China Sea (Carla A. Hills)  3 degree lat. intervals  07/91-02/93
+    Chevron
+
+*SCS South China Sea (Great Promise)   3 degree lat. intervals  11/93
+    Nippon Yosen Kahsha Shipping Company
+
+*SEY Mahe Island, Seychelles          04 40'S  55 10'E     3m  09/90   
+    Seychelles, New Mexico State University/Physical Science Laboratory
+
+*SHM Shemya Island, Alaska            52 43'N 174 06'E    40m  06/92   
+    U.S.A., DOD/U.S.A.F.
+
+*SMO Tutuila, American Samoa          14 15'S 170 34'W    42m  10/88   
+    U.S.A., NOAA/Environmental Research Laboratory (CMDL Observatory)
+
+*SPO South Pole, Antarctica	     89 59'S  24 48'W   2810m  04/93
+    U.S.A., NOAA/Environmental Research Laboratory (CMDL Observatory)
+    and National Science Foundation
+
+*STM Ocean Station "M", Norway       66 00'N  02 00'E      7m  03/94     
+    Norway Meteorological Institute
+
+*SYO Syowa, Antarctica	             69 00'S  39 35'E    11m  02/93
+    Japan, Upper Atmosphere and Space Laboratory, Tohoku University
+ 
+*TAP Tae-ahn Peninsula                36 44'N 126 08'E    20m  11/90
+    Korea, Korea National University of Education
+
+*TDF Tierra del Fuego     	      54 52'S  68 29'W    20m  09/94
+    Argentina, Servicio Meterologico Nacional
+
+*UTA Wendover, Utah                   39 54'N 113 43'W  1320m  05/93
+    U.S.A., NOAA/National Weather Service
+
+*UUM Ulaan Uul                        44 27'N 111 06'E   914m  01/92
+    Mongolia, Mongolian Hydrometeorological Research Institute          
+
+WIS Sede Boker, Negev Desert	      31 08"N  34 53'E   400m  11/95
+    Israel, Weizmann Institute of Science
+
+*ZEP Ny-Alesund, Svalbard              78 54'N  11 53'E   475m  02/94   
+    Sweden/Norway, Zeppelin Station/Univ. of Stockholm
+
+****************************************************************************
+
+REFERENCES
+
+
+Lang, P.M., L.P. Steele, R.C. Martin, and K.A. Masarie, Atmospheric 
+  methane data for the period 1983-1985 from the NOAA/GMCC global cooperative 
+  flask sampling network, NOAA Technical Memorandum ERL CMDL-1, 1990a.
+
+Lang, P.M., L.P. Steele, and R.C. Martin, Atmospheric methane data for 
+  the period 1986-1988 from the NOAA/CMDL global cooperative flask sampling 
+  network, NOAA Technical Memorandum ERL CMDL-2, 1990b.
+
+Novelli, P.C., J.E. Elkins, and L.P. Steele, The development and evaluation
+  of a gravimetric reference scale for measurements of atmospheric carbon monoxide,
+  J. Geophys. Res., 96, 13,109-13,121, 1991.
+
+Novelli, P.C., L.P. Steele, and P.P. Tans, Mixing ratios of carbon monoxide in 
+  the troposphere, J. Geophys. Res., 97, 20,731-20,750, 1992.
+
+Novelli, P.C., J.E. Collins, Jr, R.C. Myers, G.W. Sachse, and H.E. Scheel, Re-
+  evaluation of the NOAA/CMDL carbon monoxide reference scale and comparisons to
+  CO reference gases at NASA-Langley and the Fraunhofer Institute, 99, 12,833-
+  12,839, 1994.
+
+Novelli, P.C., K.A. Masarie, and P.M. Lang, Distributions and recent changes in
+  carbon monoxide in the lower troposphere, J. Geophys. Res., 103, 19,1015-
+  19,033, 1998.

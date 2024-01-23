@@ -1,0 +1,30 @@
+Japan.H2O2.new.gte                    140  150   25   40   10   14 91 Japan (PEM WA)
+SEChina.H2O2.new.gte                  120  140   15   30   10   15 91 SEChina (PEM WA)
+WPacific.H2O2.new.gte                 140  170    0   20   10   16 91 Western Pacific (PEM WA)
+JapanCoast.H2O2.new.aase              140  160   30   40    2   20 94 Japan Coast
+SEChina.H2O2.new.aase                 125  150   20   30    2   21 94 SEChina 
+MidWPacific.H2O2.new.aase             150  175   20   30    2   22 94 MidWPacific (PEM WB)
+WestTropPac.H2O2.new.aase             145  155    0   10    2   23 94 WTropPac (PEM WB)
+EasternBrazil.H2O2.new.gte            -50  -40  -20   -3    9    9 92 EBrazil (TRACEA)
+SBrazilCoast.H2O2.new.gte             -50  -40  -38  -23    9   10 92 SBrazilCoast
+TrpSAtlantic.H2O2.new.gte             -25  -10  -20    2    9   11 92 Tropical S Atlantic
+AfricaWCoast.H2O2.new.gte               0   10  -20    0    9   12 92 Africa W Coast
+SAfrica.fire.H2O2.new.gte              25   35  -15   -5    9   13 92 SAfrica.fire
+SouthAfrica.H2O2.new.gte               15   30  -30  -15    9   25 92 South Africa
+StPacific.H2O2.new.pem                170 -145  -35  -10    9   26 96 S Tropical Pacific
+TropPacific.H2O2.new.pem              170 -130  -10    5    9   27 96 Trop Pacific
+EasterIs.H2O2.new.pem                -120 -105  -35  -10    9   28 96 Easter Is
+NewZealand.H2O2.new.pem               170 -170  -55  -35    9   29 96 NewZealand (PEM TA)
+SEasterIs.H2O2.new.pem               -115 -105  -50  -35    9   31 96 S Easter Is 
+Antarctic.H2O2.new.pem                170 -170  -75  -55    9   30 96 Antarctic
+Hawaii.H2O2.new.ptb                  -160 -150   15   25    3   38 96 Hawaii 
+EqPacific.H2O2.new.ptb                160 -140  -10    5    3   39 96 EqPacific (PEM TB)
+Fiji.H2O2.new.ptb                     160 -170  -25  -10    3   40 96 Fiji
+Tahiti.H2O2.new.ptb                  -160 -140  -30  -10    3   41 96 Tahiti (PEM TB) 
+EasterIs.H2O2.new.ptb                -130 -100  -30  -10    3   42 96 Easter Is
+Maine.H2O2.new.sonex                  -72  -55   41   50   10   36 97 Maine
+Ireland.H2O2.new.sonex                -13   -3   49   54   10   37 97 Ireland
+ChinaCoast.H2O2.new.tracep            122  126   25   40    3   43 01 China Coast (Trace-P)
+SChinaCoast.H2O2.new.tracep           112  126   13   23    3   44 01 S. China Coast (Trace-P)
+SJapan.H2O2.new.tracep                126  140   25   35    3   45 01 S. Japan (Trace-P) 
+WTropPacific.H2O2.new.tracep          126  146   13   25    3   46 01 W. Trop. Pacific (Trace-P)

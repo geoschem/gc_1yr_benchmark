@@ -1,0 +1,17 @@
+#!/bin/csh
+cp ~dlm/.DECData/no04i30 m04NO.30
+cp ~dlm/.DECData/no05i30 m05NO.30
+cp ~dlm/.DECData/no06i30 m06NO.30
+cp ~dlm/.DECData/no07i30 m07NO.30
+cp ~dlm/.DECData/no08i30 m08NO.30
+cp ~dlm/.DECData/no09i30 m09NO.30
+cp ~dlm/.DECData/no10i30 m10NO.30
+cp ~dlm/.DECData/no11i30 m11NO.30
+cp ~dlm/.DECData/no12i30 m12NO.30
+cp ~dlm/.DECData/no13i30 m13NO.30
+cp ~dlm/.DECData/no14i30 m14NO.30
+cp ~dlm/.DECData/no15i30 m15NO.30
+cp ~dlm/.DECData/no16i30 m16NO.30
+cp ~dlm/.DECData/no17i30 m17NO.30
+cp ~dlm/.DECData/no18i30 m18NO.30
+cp ~dlm/.DECData/no19i30 m19NO.30

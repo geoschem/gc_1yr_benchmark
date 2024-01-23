@@ -1,0 +1,8 @@
+README -- Described the contents of data
+10 Jun 2014
+GEOS-Chem Support Team
+geos-chem-support@as.harvard.edu
+
+This directory contains the data files used to make the 1-year benchmark plots
+(courtesy of J. Logan and I. Megretskaia). These files were previously found in
+the /home/iam/ user directory, which has since been removed.

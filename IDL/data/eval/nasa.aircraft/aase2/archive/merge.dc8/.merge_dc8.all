@@ -1,0 +1,78 @@
+#!/bin/csh
+
+set flightlist = "920108 920111 920114 920116 920119 920122 920123 920128 920129 920212 920214 920217 920220 920310 920312 920314 920318 920320"  
+
+foreach flight ($flightlist) 
+
+  if(-e merge.dc8.$flight.Z) rm merge.dc8.$flight.Z 
+  if(-e eph.1min.dc8.$flight.Z) rm eph.1min.dc8.$flight.Z 
+
+  if(-e o3.tmp) rm o3.tmp
+  set infile1=/data/aase2/archive/dc8/'o3'$flight.da1.Z
+  if(-e $infile1) then
+	  zcat $infile1 > o3.tmp
+  endif
+  if(-e dp.tmp) rm dp.tmp
+  set infile2=/data/aase2/archive/dc8/'dp'$flight.da1.Z
+  if(-e $infile2) then
+	  zcat $infile2 > dp.tmp
+  endif
+  if(-e df.tmp) rm df.tmp
+  set infile3=/data/aase2/archive/dc8/'df'$flight.da1.Z
+  if(-e $infile3) then
+	  zcat $infile3 > df.tmp
+  endif
+  if(-e ny.tmp) rm ny.tmp
+  set infile4=/data/aase2/archive/dc8/'ny'$flight.da1.Z
+  if(-e $infile4) then
+	  zcat $infile4 > ny.tmp
+  endif
+  if(-e da.tmp) rm da.tmp
+  set infile5=/data/aase2/archive/dc8/'da'$flight.da1.Z
+  if(-e $infile5) then
+	  zcat $infile5 > da.tmp
+  endif
+  if(-e fa.tmp) rm fa.tmp
+  set infile6=/data/aase2/archive/dc8/'fa'$flight.da1.Z
+  if(-e $infile6) then
+	  zcat $infile6 > fa.tmp
+  endif
+  if(-e no.tmp) rm no.tmp
+  set infile7=/data/aase2/archive/dc8/'no'$flight.da1.Z
+  if(-e $infile7) then
+	  zcat $infile7 > no.tmp
+  endif
+  if(-e n2.tmp) rm n2.tmp
+  set infile8=/data/aase2/archive/dc8/'n2'$flight.da1.Z
+  if(-e $infile8) then
+	  zcat $infile8 > n2.tmp
+  endif
+  if(-e fs.tmp) rm fs.tmp
+  set infile9=/data/aase2/archive/dc8/'fs'$flight.da1.Z
+  if(-e $infile9) then
+	  zcat $infile9 > fs.tmp
+  endif
+  if(-e ft.tmp) rm ft.tmp
+  set infile10=/data/aase2/archive/dc8/'ft'$flight.da1.Z
+  if(-e $infile10) then
+	  zcat $infile10 > ft.tmp
+  endif
+  if(-e uc.tmp) rm uc.tmp
+  set infile11=/data/aase2/archive/dc8/'uc'$flight.da1.Z
+  if(-e $infile11) then
+	  zcat $infile11 > uc.tmp
+  endif
+  
+  echo $flight | ~ewg/aase2/dc8/merge/merge.update.dc8
+  
+  chmod g+w merge.dc8.$flight
+  chmod g+w eph.1min.dc8.$flight
+  chmod g+w *.tmp
+  
+  compress merge.dc8.$flight
+  compress eph.1min.dc8.$flight
+
+  echo  "             "
+  echo  "             "
+
+end  

@@ -1,0 +1,83 @@
+*****************************************************
+Contact Liz Moyer before publishing comparisons with
+this data!!!!!
+*****************************************************
+
+The file, ER2wO3CO.dat.gz, contains O3 and CO data
+taken from the ER2 aircraft.  The data was taken in
+the Pacific in the upper troposphere and lower
+stratosphere.
+
+I've included some email exchanges with info about
+file format below.
+
+I've also include an IDL program I used to read in
+the data, er2.pro.
+
+Bryan
+
+*****************************************************
+
+Date: Wed, 14 Mar 2001 11:10:13 -0500
+From: Liz Moyer <moyer@huarp.harvard.edu>
+To: Bryan Duncan <bnd@ariel.harvard.edu>
+Subject: Re: file
+
+Bryan -
+
+I'm putting a file called "bryanout" in the same anonymous ftp 
+site as before. I put the co in the same file, figured that'd be 
+easier for you than merging two datasets. Columns are 
+date,time,lat,lon,p,t,theta,o3,co
+and format is
+(I7,F9.2,F9.3,F9.3,F9.3,F9.3,F9.3,F6.0,F9.3)
+but the numbers should all be at least space-delimited.
+Again, '9999' is the code for missing data.
+
+Same caveat with this data as before - this is for internal use; 
+don't use for publication w/o contacting me (mine might not be 
+the most recent updated version), & the actual teams that 
+produced the data. 
+
+Liz
+
+----------------------------------------------------
+Liz Moyer
+CCB (Anderson group)
+Harvard University
+12 Oxford St. (Link)
+Cambridge, MA 02138
+(617) 495-5922 fax -4902
+
+
+
+
+Date: Mon, 12 Feb 2001 14:17:56 -0500
+From: Liz Moyer <moyer@huarp.harvard.edu>
+To: bryan Duncan <bnd@ariel.harvard.edu>
+Subject: file
+
+Bryan -
+
+File of ER-2 data you asked for is on our anonymous ftp site 
+(ftp.arp.harvard.edu and go to pub/moyer, look for Bryan.dat). 
+It holds date, utime (greenwich mean), lat, lon, p (mb), CO 
+(ppb). Watch out for {} at beginning and end of each line. We 
+also have O3, altitude, theta, etc. if you want those. These are 
+all ER-2 observations, all flights from 1995-1997. Missing data 
+are given value of 9999.
+
+I haven't made sure this is the latest version of the data so of 
+course don't present this or use for anything but internal review 
+w/o contacting me.
+
+Liz
+
+----------------------------------------------------
+Liz Moyer
+CCB (Anderson group)
+Harvard University
+12 Oxford St. (Link)
+Cambridge, MA 02138
+(617) 495-5922 fax -4902
+

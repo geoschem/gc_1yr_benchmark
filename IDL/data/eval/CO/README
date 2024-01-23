@@ -1,0 +1,130 @@
+***************************************************************************
+README   README    README    README    README    README    README    README
+
+FILE: 		./data/co/flask/complete/README
+UPDATE:		02 June 1997  
+
+***************************************************************************
+
+Atmospheric CARBON MONOXIDE Mixing Ratios from Flask Samples.
+
+The data files "data/co/flask/complete/xxx.co" (where xxx is the 3-letter 
+site code; see "pub/co/flask/README" for a table of sampling sites and their 
+codes), contain carbon monoxide mixing ratios along with pertinent sampling and 
+analysis information tabulated by sampling site.  For each site, the data are 
+ordered chronologically by sample date.  The Pacific transect shipboard data have  
+file names ./xxxhll.co where xxx represents the ship, h represents the hemisphere 
+(n=northern and s=southern), and ll the latiude.  The "paw" and "opc" shipboard
+data have been combined into a single data set for each 5 degree latitude, under
+the site code "poc".
+
+The data files contain one line for each flask sample. 
+The format for each line is:
+
+     sta yyyy mm dd hh mm xxxxx-xx c ddddd.dd fff ii YYYY MM DD kkkkkk nt
+
+where:
+
+     sta =	the three-letter station code (see table in "co/flask/README").
+     yyyy mm dd = the GMT year, month, and day (four digit year,
+                  two digit month and day) when the sample was collected
+     hh mm =	the GMT time (hour, minutes; two digits
+            	each) of sample collection
+     xxxxx-xx = the flask sample I.D. number.  This
+                field can contain up to eight       
+                characters but may contain fewer.   
+                This field may contain letters as well 
+                as numbers.
+
+     c =	a one letter code that identifies the sample
+        	collection method.  The codes used are:
+
+               P     Sample collected using a       
+                     portable, battery powered      
+                     pumping unit.  Two flasks      
+                     were connected in series,       
+                     flushed with air, and then     
+                     pressurized to 1.2 - 1.5       
+                     times ambient pressure.
+
+	       D     Portable pump similar to P
+		     but this model contains
+		     a thermo-electric drier to
+		     remove water vapor from the 
+		     sample.
+
+               T     Evacuated flask filled by      
+                     opening an O-ring sealed       
+                     stopcock.
+
+               S     Flask filled at NOAA/CMDL     
+                     observatories by sampling air  
+                     from the in situ CO2           
+                     measurement air intake         
+                     system.
+
+               N     Flask were filled using a 
+	             pump different from those 
+		     used in methods P and D.
+
+     NOTE:  The sample location, date-time, flask ID number and collection method
+	    uniquely identify each sample.  Details of the measurement strategy 
+            are given in Lang et al., 1990 a,b.
+
+
+     ddddd.dd =	CO mixing ratio in ppb by mole fraction referenced to the NOAA/CMDL
+                carbon monoxide scale.  Missing values are denoted by -999.99.
+
+     fff =	a three-character flag indicating the results
+          	of our data selection process.  
+
+	  	An alphanumeric other than a period (.) in the FIRST
+	  	column indicates samples with problems during 
+	  	sample collection or analysis.
+
+	  	An alphanumeric other than a period (.) in the SECOND 
+	  	column indicates samples thought to represent non- 
+	  	background conditions.
+
+	  	An alphanumeric other than a period (.) in the THIRD
+	  	column is a sample qualifier that is not presently used.
+
+    		ii = a 2 character code that identifies the    
+         	instrument used for the CO measurement.
+
+		(See Novelli et al., 1992 for detailed explanation of these flags.)
+
+     YYYY MM DD = the year (YYYY), month (MM), and day (DD),
+                in local time, of the CO measurement.
+ 
+     kkkkkk = a six character field identifying the raw file 
+              for this analysis date. NO RAW indicates raw data 
+              is not available.
+
+     nt = two digit code where "n" is the nth aliquot of the total 
+	  number of aliquots, "t", measured for each flask in a raw 
+	  file.  Blank spaces indicate the data are not available.
+
+***************************************************************************
+
+REFERENCES
+
+
+Lang, P.M., L.P. Steele, R.C. Martin, and K.A. Masarie, 1990a, Atmospheric 
+  methane data for the period 1983-1985 from the NOAA/GMCC global cooperative 
+  flask sampling network, NOAA Technical Memorandum ERL CMDL-1.
+
+Lang, P.M., L.P. Steele, and R.C. Martin, 1990b, Atmospheric methane data for 
+  the period 1986-1988 from the NOAA/CMDL global cooperative flask sampling 
+  network, NOAA Technical Memorandum ERL CMDL-2.
+
+Lang, P.M., L.P. Steele, L.S. Waterman, R.C. Martin, K.A. Masarie, and 
+  E.J. Dlugokencky, 1992, NOAA/CMDL Atmospheric methane data for the period
+  1983-1990 from shipboard flask sampling, NOAA Technical Memorandum ERL CMDL-4.
+
+Novelli, P.C., J.W. Elkins, and L.P. Steele, 1991, The development and evaluation  
+  of a gravimetric reference scale for measurements of atmospheric carbon monoxide,
+  J. Geophys. Res., 96, 13,109-13,121.   
+
+Novelli, P.C., L.P. Steele, and P.P. Tans, 1992, Mixing ratios of carbon monoxide in  
+  the troposphere, J. Geophys. Res., 97, 20,731-20,750.   

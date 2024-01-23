@@ -1,0 +1,64 @@
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*                                                                     *
+*     This README is written by Inna Megretskaia in February of 99.   *
+*     It will be updated in the future. Two other READMEs are copied  *
+*     from the website with original data.                            *
+*                                                                     *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+   All xxx.mn files have 12 lines and 7 columns. Every line corresponds to
+one months, starting from January. Seven numbers in each line are: 
+1. MEAN CO
+2. STANDARD ERROR 
+3. NUMBER OF YEARS WITH DATA,
+4. MIN. MONTHLY VALUE
+5. MAX. MONTHLY VALUE
+6. MEDIAN MONTHLY VALUE  
+7. MEAN OF MONTHLY VALUES 
+
+   These number are calculated from original data without any data flagged 
+in the first column.
+   Some individual data points were excluded from analysis. There supposed 
+to be 2 measurements made simultaneously every time. So if there was only
+one measurement for a given time which passed original criteria (not
+flagged in the first column) and it was flagged in the second column
+that particular data point was not included.
+   For some stations a few selected dates were excluded from consideration
+based on the value being too different from other values for this months.
+These stations (ship missions) and dates are:
+
+Easter Island (eic)         - 2/15/96
+Christmas Island (chr)      - 7/22/96
+Pacific Ocean 10N (pocn10)  - July 1995
+Pacific Ocean 5S (pocs05)   - July 1995
+Pacific Ocean 25S (pocs25)  - November 1996 
+Pacific Ocean 35S (pocs35)  - November 1996 
+
+   After data selection was finished, data for individual days were
+calculated ( by averaging of 2 values, if we had more than one value ) 
+and monthly means for every year were formed. These annual monthly means
+were used to obtain columns 1-7.
+
+   Example - key.mn:
+
+163.86 40.75 5 128.8 208.94 141.83 131.45
+180.36 76.18 5 117.65 310.03 153.18 136.57
+174.11 24.66 5 150.3 211.08 176.18 150.29
+167.31 41.36 5 137.28 235.94 147.68 150.07
+143.38 32.54 4 126.41 192.18 127.47 129.32
+113.01 49.96 5 82.15 201.88 92.52 93.05
+74.08 3.82 3 71.72 78.49 72.03 74.08
+81.87 10.67 5 68.47 94.04 83.94 78.89
+112.64 56.79 5 74.49 208.6 81.74 85.88
+100.87 17.19 5 77.26 122.39 102.3 97.38
+170.23 111.64 5 99.29 368.35 129.42 106.97
+296.23 249.66 6 93 717.45 182.83 111.75
+
+   File har.mn ( Harvard forest ) was not made by me. It has older data 
+and only 3 meaningful columns. 
+***************************************************************************
+
+   7/29/02
+There are 2 subdirectories in this directory, 92_97 and 2001 with the
+means for 92-97 and 2001 correspondently. The formats of the files are
+the same as in this directory. 

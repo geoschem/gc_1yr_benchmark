@@ -1,0 +1,7 @@
+#!/bin/csh
+source ~/.cshrc.alias
+if(-e merge.clo.$1) rm merge.clo.$1
+echo $1 | ~rjs/aase2/merge.clo.aase2 > merge.clo.aase2.$1.log
+
+chmod g+w merge.clo.$1
+

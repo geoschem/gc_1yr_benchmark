@@ -1,0 +1,23 @@
+This directory contains file required to process CO data for use in
+the GEOS-Chem benchmark. The process was backed out from the existing
+data files, so may not be exactly the same as done previously.
+
+The file sitelist.txt contains all sites in the earlier data file.
+To process all of these, first get the data (see below), then edit
+batch_process_gmd.pro to specify the correct year, then run
+batch_process_gmd.pro using IDL. This routine expects the following 
+directory for outputing data files:
+../YYYYdata/
+(where YYYY is the year of data being processed).
+
+Data are from the NOAA GMD network (previously CMDL). The data files
+can be downloaded using:
+
+wget ftp://aftp.cmdl.noaa.gov/data/trace_gases/co/flask/surface/co_###_surface-flask_1_ccgg_event.txt
+
+where ### should be replaced with the 3-letter code (all lower case)
+for the site (e.g. alt for Alert, etc.). The relevant 3-letter codes
+can be found in the sitelist.txt file, or you can use a wget accept
+list (-A) to just get all the files.
+
+J. Fisher, 4 July 2017

@@ -1,0 +1,9 @@
+#!/bin/csh
+source ~/.cshrc.alias
+if(-e merge.clo_burk2.$1) rm merge.clo_burk2.$1
+echo $1 | ~rjs/aase2/merge.clo_burk2.aase2 > merge.clo_burk2.$1.log
+
+chmod g+w merge.clo_burk2.$1
+chmod g+w merge.clo_burk2.$1.log
+chmod g+w fort.89 
+

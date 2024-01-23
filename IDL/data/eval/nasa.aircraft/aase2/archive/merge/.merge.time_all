@@ -1,0 +1,15 @@
+#!/bin/csh
+source ~/.cshrc.alias
+set dates =(910917 910919 911004 911006 911008 911010 911012 911014 911102\
+            911208 911212 911214 920104 920106 920108 920112 920116 920120\
+            920213 920215 920217 920222 920315 920318 920320 920322 920326)
+if(-e time.display.aase2.all) rm time.display.aase2.all
+foreach date ($dates)
+	echo $date | /usr/people/rjs/spade/merge.time >! merge.time.$date.log
+	echo $date | /usr/people/rjs/spade/time.display.log
+	cat time.display.$date >> time.display.aase2.all
+	if($date != $dates[1]) cat blank.line >> time.display.aase2.all
+end
+chmod g+w merge.time.*
+chmod g+w time.display.*
+exit

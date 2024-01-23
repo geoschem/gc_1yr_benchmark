@@ -1,0 +1,9 @@
+altitude num mean median  std  p10 p25 p75 p90 min max
+0.5 1 5.3 5.3 NaN 5.3 5.3 5.3 5.3 5.3 5.3
+1.5 2 4.75 4.75 2.19 3.51 3.98 5.52 5.99 3.2 6.3
+2.5 1 7.3 7.3 NaN 7.3 7.3 7.3 7.3 7.3 7.3
+3.5 1 4.9 4.9 NaN 4.9 4.9 4.9 4.9 4.9 4.9
+4.5 NA NA NA NA NA NA NA NA NA NA
+5.5 NA NA NA NA NA NA NA NA NA NA
+6.5 NA NA NA NA NA NA NA NA NA NA
+7.5 1 7 7 NaN 7 7 7 7 7 7
