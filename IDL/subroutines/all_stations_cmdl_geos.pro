@@ -19,7 +19,7 @@ pro all_stations_cmdl_geos, species1, species, max_sta, pref_spc,  pref_p, year,
    Type1 = CTM_Type( Model, Res=[ DLon, DLat ] )
 
    ; Read data
-   filest  = 'data/netCDF/Sites.ground.CO.1'
+   filest = '/n/jacob_lab/Lab/obs_data_for_bmk/data_for_idl_code/netCDF/Sites.ground.CO.1'
 
    ;PRINT, filest
    openr, usta, filest, /get_lun
