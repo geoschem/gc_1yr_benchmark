@@ -294,11 +294,15 @@ pro BenchMark_1yr, InputFile,                                                $
    Do_Cloud_Diffs = Keyword_Set( Do_Cloud_Diffs )
    Do_BrO         = Keyword_Set( Do_BrO         )
    Do_PAN         = Keyword_Set( Do_PAN         )
-   Do_PDF         = Keyword_Set( Do_PDF         )
+   ;---------------------------------------------------------------
+   ; Now always save output as PDF (Bob Yantosca, 29 Jan 2024)
+   ;Do_PDF         = Keyword_Set( Do_PDF         )
+   Do_PDF         = 1
+   ;---------------------------------------------------------------
    Do_GCHP        = Keyword_Set( Do_GCHP        )
    Do_STE         = Keyword_Set( Do_STE         )
    DynRange       = Keyword_Set( DynRange       )
-
+   
    ; Define suffix for plots
    if ( DynRange )                    $
       then PsSuffix = '.dyn_range.ps' $
