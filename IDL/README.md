@@ -25,7 +25,9 @@ R2: 4
 Y2: 2019
 ```
    
-2. Use these commands to generate the plots.  (NOTE: PDF output is now always turned on, so there is no need to manually set `/DO_PDF`.)
+2. Use these commands to generate the plots.
+    - NOTE: PDF output is now always turned on, so there is no need to manually set `/DO_PDF`.
+    - Also, due to a SLURM bug on Harvard Cannon that prevents certain X11 windows from opening in interactive sessions, you must run the `benchmark_1yr.pro` script on the login node.
    
 ```console
 $ benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_Ox
