@@ -30,12 +30,12 @@ Y2: 2019
     - Also, due to a SLURM bug on Harvard Cannon that prevents certain X11 windows from opening in interactive sessions, you must run the `benchmark_1yr.pro` script on the login node.
    
 ```console
-$ benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_Ox
-$ benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_CO
-$ benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_MOZAIC
-$ benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_AIRCAFT
-$ benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_PAN
-$ benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_AEROSOL
+IDL> benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_Ox
+IDL> benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_CO
+IDL> benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_MOZAIC
+IDL? benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_AIRCAFT
+IDL> benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_PAN
+IDL> benchmark_1yr, 'input/GC_X.Y.Z-rc.N.1yr', /DO_AEROSOL
 ```
 
 3. Run the `move_output.sh` script, which will move the files to the `ModelVsObs` subdirectory of the benchmark plots folder that you specify:
