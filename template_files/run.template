@@ -31,9 +31,6 @@
 #------------------------------------------------------------------------------
 #BOC
 
-# Source GEOS-Chem Classic environment file
-source ../gcclassic.env
-
 # Set the proper # of threads for OpenMP
 # SLURM_CPUS_PER_TASK ensures this matches the number you set with -c above
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
@@ -47,6 +44,9 @@ MONTH1={STMONTH}
 
 # Set version
 VER="{VERSTR}"
+
+# Set the run index
+RUN="{RUNSTR}"
 
 # Set duration time in months
 DUR=1
@@ -77,51 +77,58 @@ fi
 TIME1="000000"
 TIME2="000000"
 
-# Change directory
+# Navigate up to the run directory
 cd ..
+
+# Source the GNU10 environment file
+source "./runScriptSamples/operational_examples/harvard_cannon/gcclassic.gcc10_cannon_rocky.env"
 
 # Set input file
 INP="./Config/geoschem_config.yml.template"
 
 # Set restart file
-RES="./Restarts/GEOSChem.Restart."$DATE1"_0000z.nc4"
+RES="./Restarts/GEOSChem.Restart.${DATE1}_0000z.nc4"
+
+# Set log file name
+LOG="./Logs/log.${DATE1}"
 
 # Create input file
-if [ -f $INP ]; then
-  # Replace date and time tokens in geoschem_config.yml.template
-  sed -e "s/{DATE1}/$DATE1/ig" -e "s/{DATE2}/$DATE2/ig" -e "s/{TIME1}/$TIME1/ig" -e "s/{TIME2}/$TIME2/ig" -e "s/{VERSION}/$VER/ig" $INP > tmp.yml
-  mv tmp.yml ./geoschem_config.yml
+if [[ -f $INP ]]; then
+  # Replace date and time tokens in input.geos.template files
+  cp $INP tmp.input
+  sed -i -e "s/{DATE1}/$DATE1/g" tmp.input
+  sed -i -e "s/{DATE2}/$DATE2/g" tmp.input
+  sed -i -e "s/{TIME1}/$TIME1/g" tmp.input
+  sed -i -e "s/{TIME2}/$TIME2/g" tmp.input
+  sed -i -e "s/{VERSION}/$VER/g" tmp.input
+  mv tmp.input ./geoschem_config.yml
 else
-  echo "Could not find GEOS-Chem config file: $INP"
+  echo "Could not find input file: $INP"
   exit 1
 fi
 
-# Do this manually for now
-## Compile the code before starting the initial run
-#if [ $RUN -eq 1 ]; then
-#    cd build
-#    cmake ../CodeDir
-#    cmake . -DRUNDIR=..
-#    make -j install
-#    cd ..
-#  if [ ! -f ./gcclassic ]; then
-#    echo "Compilation error occurred. Could not start run."
-#    exit 1
-#  fi
-#fi
-
-# Set log file name
-LOG="./Logs/log."$DATE1
+# Compile the code before starting the initial run
+if [[ "x${RUN}" == "x01" ]]; then
+    cd build
+    cmake ../CodeDir -DRUNDIR=..
+    make -j
+    make -j install
+    cd ..
+    if [[ ! -f ./gcclassic ]]; then
+	echo "Compilation error occurred. Could not start run."
+	exit 1
+    fi
+fi
 
 # Run the code
-if [ -f $RES ]; then  
-  ./gcclassic >> $LOG
+if [[ -f $RES ]]; then
+  srun -c ${SLURM_CPUS_PER_TASK} ./gcclassic >> $LOG
 else
   echo "Could not find restart file: $RES"
   exit 1
 fi
 
-# Archive HEMCO.log and geoschem_config.yml files
+# Move HEMCO.log and input.geos files to logs directory
 mv -v geoschem_config.yml ./Config/geoschem_config.yml.$DATE1
 
 # Exit normally
