@@ -80,9 +80,14 @@ if [ -f $infile ]; then
       #echo $DATE1
 
       # Replace run number in run script
-      sed -e "s/{CDATE}/$DATE1/ig" -e "s/{VERSTR}/$version/ig" -e "s/{STYEAR}/$YEAR/ig" -e "s/{STMONTH}/$MONTH/ig" $infile > run.tmp
+      cp $infile run.tmp
+      sed -i -e "s/{CDATE}/${DATE1}/g"    run.tmp
+      sed -i -e "s/{VERSTR}/${version}/g" run.tmp
+      sed -i -e "s/{STYEAR}/${YEAR}/g"    run.tmp
+      sed -i -e "s/{STMONTH}/${MONTH}/g"  run.tmp
+      sed -i -e "s/{RUNSTR}/${RUN}/g"     run.tmp
       echo " -- $version.$DATE1"
-      mv run.tmp $version.$DATE1
+      mv run.tmp $version.${DATE1}
 
    done
 
