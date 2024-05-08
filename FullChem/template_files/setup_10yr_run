@@ -11,7 +11,7 @@
 #\\
 #\\
 # !CALLING SEQUENCE:
-#  ./setup_1yr_run
+#  ./setup_10yr_run
 #
 # !REVISION HISTORY: 
 #  03 Aug 2017 - M. Sulprizio- Initial version
@@ -138,7 +138,8 @@ cp ${THIS_REPO_ROOT}/FullChem/template_files/run.template RunScripts/
 cp ${THIS_REPO_ROOT}/FullChem/template_files/make_runscripts RunScripts/
 cp ${THIS_REPO_ROOT}/template_files/job_depend.pl RunScripts/
 cd RunScripts
-./make_runscripts ${BM_VERSION} ${START_YR} 1 120
+./make_runscripts "${BM_VERSION}" "${START_YR}" 1 120
+sed -i -e "s/GCC_X\.Y\.Z\-rc\.N/${BM_VERSION}/g" job_depend.pl
 cd ..
 
 #----------------------------------------------------------------

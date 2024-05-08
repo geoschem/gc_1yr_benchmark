@@ -53,7 +53,7 @@ if [[ -f $infile ]]; then
         sed -i -e "s/{CDATE}/${yr}/g"       run.tmp
         sed -i -e "s/{VERSTR}/${version}/g" run.tmp
         sed -i -e "s/{STYEAR}/${yr}/g"      run.tmp
-        sed -i -e "s/{RUNSTR}/${RUN}/g"     run.tmp
+        sed -i -e "s/{RUNSTR}/${run}/g"     run.tmp
         echo " -- ${version}.${yr}"
         mv run.tmp "${version}.${yr}"
       

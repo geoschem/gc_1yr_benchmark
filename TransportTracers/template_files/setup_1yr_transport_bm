@@ -92,13 +92,16 @@ cp ${THIS_REPO_ROOT}/TransportTracers/template_files/run.template RunScripts/
 cp ${THIS_REPO_ROOT}/TransportTracers/template_files/make_runscripts RunScripts/
 cp ${THIS_REPO_ROOT}/TransportTracers/template_files/job_depend.pl RunScripts/
 cd RunScripts
-./make_runscripts ${BM_VERSION} ${START_YR} ${N_YEARS}
+./make_runscripts "${BM_VERSION}" "${START_YR}" "${N_YEARS}"
+sed -i -e "s/GCC_X\.Y\.Z\-rc\.N\-TransportTracers/${BM_VERSION}/g" job_depend.pl
 cd ..
 
 #----------------------------------------------------------------
 # Rename restart file to start date
 #----------------------------------------------------------------
-mv "Restarts/GEOSChem.Restart.20190101_0000z.nc4" "Restarts/GEOSChem.Restart.${START_YR}0101_0000z.nc4"
+if [[ -f "Restarts/GEOSChem.Restart.20190101_0000z.nc4" ]]; then
+    mv "Restarts/GEOSChem.Restart.20190101_0000z.nc4" "Restarts/GEOSChem.Restart.${START_YR}0101_0000z.nc4"
+fi
 
 # Modify HEMCO_Config.rc to accept a restart file for a different year
 sed -i -e "s/EFYO/CYS/g" HEMCO_Config.rc

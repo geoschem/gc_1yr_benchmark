@@ -132,7 +132,8 @@ cp ${THIS_REPO_ROOT}/FullChem/template_files/run.template RunScripts/
 cp ${THIS_REPO_ROOT}/FullChem/template_files/make_runscripts RunScripts/
 cp ${THIS_REPO_ROOT}/FullChem/template_files/job_depend.pl RunScripts/
 cd RunScripts
-./make_runscripts ${BM_VERSION} ${START_YR} ${START_MON} ${N_MONTHS}
+./make_runscripts "${BM_VERSION}" "${START_YR}" "${START_MON}" "${N_MONTHS}"
+sed -i -e "s/GCC_X\.Y\.Z\-rc\.N/${BM_VERSION}/g" job_depend.pl
 cd ..
 
 #----------------------------------------------------------------
