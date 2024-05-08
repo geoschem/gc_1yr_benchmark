@@ -1,0 +1,137 @@
+#!/bin/bash
+
+#SBATCH -c 48
+#SBATCH -N 1
+#SBATCH -t 0-24:00
+#SBATCH -p huce_cascade,seas_compute,shared
+#SBATCH --mem=132000
+#SBATCH --mail-type=END
+
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: {VERSTR}.{CDATE}
+#
+# !DESCRIPTION: Submits a 1-year benchmark simulation and sends output to
+#  the "logs" directory.
+#\\
+#\\
+# !CALLING SEQUENCE:
+#  To submit run to the SLURM queue system:
+#   sbatch {VERSTR}.{CDATE}
+#
+#  To run interactively
+#   ./{VERSTR}.{CDATE}
+#
+# !REVISION HISTORY:
+#  24 Mar 2015 - M. Sulprizio- Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+# Set the proper # of threads for OpenMP
+# SLURM_CPUS_PER_TASK ensures this matches the number you set with -c above
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+# Default mask
+umask 022
+
+# Set run number
+YEAR1={STYEAR}
+MONTH1={STMONTH}
+
+# Set version
+VER="{VERSTR}"
+
+# Set the run index
+RUN="{RUNSTR}"
+
+# Set duration time in months
+DUR=1
+
+if [ $MONTH1 -eq 12 ]; then
+  MONTH2=1
+else
+  MONTH2=$((MONTH1 + DUR))
+fi
+
+# Set dates and times
+if [ $MONTH1 -ge 10 ]; then
+  DATE1="${YEAR1}${MONTH1}01"
+  if [ $MONTH2 -eq 1 ]; then
+    YEAR2=$((YEAR1 + 1))
+    DATE2="${YEAR2}0${MONTH2}01"
+  else
+    DATE2="${YEAR1}${MONTH2}01"
+  fi
+else
+  DATE1="${YEAR1}0${MONTH1}01"
+  if [ $MONTH2 -ge 10 ]; then
+    DATE2="${YEAR1}${MONTH2}01"
+  else
+    DATE2="${YEAR1}0${MONTH2}01"
+  fi
+fi
+TIME1="000000"
+TIME2="000000"
+
+# Navigate up to the run directory
+cd ..
+
+# Source the GNU10 environment file
+source "./runScriptSamples/operational_examples/harvard_cannon/gcclassic.gcc10_cannon_rocky.env"
+
+# Set input file
+YML="./Config/geoschem_config.yml.template"
+
+# Set restart file
+RES="./Restarts/GEOSChem.Restart.${DATE1}_0000z.nc4"
+
+# Set log file name
+LOG="./Logs/log.${DATE1}"
+
+# Create input file
+if [[ -f $YML ]]; then
+  # Replace date and time tokens in input.geos.template files
+  cp $INP tmp.yml
+  sed -i -e "s/{DATE1}/$DATE1/g" tmp.yml
+  sed -i -e "s/{DATE2}/$DATE2/g" tmp.yml
+  sed -i -e "s/{TIME1}/$TIME1/g" tmp.yml
+  sed -i -e "s/{TIME2}/$TIME2/g" tmp.yml
+  sed -i -e "s/{VERSION}/$VER/g" tmp.yml
+  mv tmp.yml ./geoschem_config.yml
+else
+  echo "Could not find input file: $INP"
+  exit 1
+fi
+
+# Compile the code before starting the initial run
+if [[ "x${RUN}" == "x01" ]]; then
+    cd build
+    cmake ../CodeDir -DRUNDIR=..
+    make -j
+    make -j install
+    cd ..
+    if [[ ! -f ./gcclassic ]]; then
+        echo "Compilation error occurred. Could not start run."
+        exit 1
+    fi
+fi
+
+# Run the code
+if [[ -f $RES ]]; then
+  srun -c ${SLURM_CPUS_PER_TASK} ./gcclassic >> $LOG
+else
+  echo "Could not find restart file: $RES"
+  exit 1
+fi
+
+# Move HEMCO.log and input.geos files to logs directory
+mv -v geoschem_config.yml ./Config/geoschem_config.yml.$DATE1
+
+# Exit normally
+exit 0
+
+#EOC

@@ -1,0 +1,8 @@
+#*
+*~
+input/old/*
+input/*
+output/*
+tracerinfo.dat
+diaginfo.dat
+*.txt

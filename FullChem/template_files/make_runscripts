@@ -87,15 +87,15 @@ if [ -f $infile ]; then
       sed -i -e "s/{STMONTH}/${MONTH}/g"  run.tmp
       sed -i -e "s/{RUNSTR}/${RUN}/g"     run.tmp
       echo " -- $version.$DATE1"
-      mv run.tmp $version.${DATE1}
+      mv run.tmp "$version.${DATE1}"
 
    done
 
    # Make scripts executable
-   chmod 755 $version.*
+   chmod 755 "${version}.*"
 
 else
-   echo "Could not find input file: $INP"
+   echo "Could not find input file: $infile"
    exit 1
 fi
 

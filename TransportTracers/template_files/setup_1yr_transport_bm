@@ -1,0 +1,115 @@
+#!/bin/bash
+
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: setup_1yr_transport_bm
+#
+# !DESCRIPTION: Sets up a 1-yr Transport Tracers benchmark simulation
+#  created by the GEOS-Chem unit tester.
+#\\
+#\\
+# !CALLING SEQUENCE:
+#  ./setup_1yr_transport_bm
+#
+# !REVISION HISTORY: 
+#  14 Feb 2018 - M. Sulprizio- Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+#----------------------------------------------------------------
+# Define version name
+#----------------------------------------------------------------
+
+BM_VERSION="GCC_14.1.0-rc.1-TransportTracers"
+
+START_YR=2009
+N_YEARS=11
+
+TEMP="temp.txt"
+
+echo "==========================================================="
+echo "CREATING 1-YR RUN DIRECTORY for $BM_VERSION"
+echo "==========================================================="
+echo ""
+
+#----------------------------------------------------------------
+# Create subdirectories
+#----------------------------------------------------------------
+mkdir -v Config            # For *.yml files
+mkdir -v Logs              # For *.log files
+mkdir -v RunScripts        # For run scripts  
+mkdir -v BenchmarkResults  # For GCPy output
+
+#----------------------------------------------------------------
+# Set up geoschem_config.yml files
+#----------------------------------------------------------------
+echo -e "Setting up geoschem_config.yml\n"
+mv geoschem_config.yml Config/
+cd Config
+
+inFile="geoschem_config.yml.template"
+
+# Need to replace the following text
+OLD1="20190101"
+NEW1="{DATE1}"
+
+OLD2="20190201"
+NEW2="{DATE2}"
+
+cp geoschem_config.yml $inFile
+
+# Replace text
+echo -e "Replacing text in $inFile\n"
+sed -i -e "s/$OLD1/$NEW1/g" "$inFile"
+sed -i -e "s/$OLD2/$NEW2/g" "$inFile"
+
+# Move back to top-level run directory
+rm geoschem_config.yml
+cd ..
+
+#----------------------------------------------------------------
+# Set up HISTORY.rc
+#----------------------------------------------------------------
+echo -e "Setting up diagnostics in HISTORY.rc\n"
+
+# Need to replace the following text
+sed -i -e "s/Restart.frequency:          'End',/Restart.frequency:          00000100 000000/ig" HISTORY.rc
+sed -i -e "s/Restart.duration:           'End',/Restart.duration:           00000100 000000/ig" HISTORY.rc
+
+#----------------------------------------------------------------
+# Set up run scripts
+#----------------------------------------------------------------
+echo -e "Setting up run scripts\n"
+cp ~/GC/benchmarks/TransportTracers/template_files/run.template RunScripts/
+cp ~/GC/benchmarks/TransportTracers/template_files/make_runscripts RunScripts/
+cp ~/GC/benchmarks/TransportTracers/template_files/job_depend.pl RunScripts/
+cd RunScripts
+./make_runscripts ${BM_VERSION} ${START_YR} ${N_YEARS}
+cd ..
+
+#----------------------------------------------------------------
+# Rename restart file to start date
+#----------------------------------------------------------------
+mv Restarts/GEOSChem.Restart.20190101_0000z.nc4 Restarts/GEOSChem.Restart.${START_YR}0101_0000z.nc4
+
+# Modify HEMCO_Config.rc to accept a restart file for a different year
+sed -i -e "s/EFYO/CYS/g" HEMCO_Config.rc
+
+#----------------------------------------------------------------
+# Copy other necessary files
+#----------------------------------------------------------------
+cp ~/GC/benchmarks/TransportTracers/template_files/pack_1yr_transport_bm .
+cp ~/GC/benchmarks/TransportTracers/template_files/copy_1yr_transport_bm .
+cp ~/gcpy/benchmark/config/1yr_tt_benchmark.yml BenchmarkResults/
+
+echo "==========================================================="
+echo "DONE UPDATING 1-YR TransportTracers BENCHMARK RUN DIRECTORY"
+echo "==========================================================="
+
+# Exit normally
+exit 0
+#EOC

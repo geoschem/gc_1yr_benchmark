@@ -1,0 +1,78 @@
+#!/bin/bash
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: copy_1yr_transport_bm
+#
+# !DESCRIPTION: Copy the 1-year Transport Tracers benchmark run directory so
+#  that it can be copied to the permanent storage site on gcgrid.
+#\\
+#\\
+# !CALLING SEQUENCE:
+#  ./copy_1yr_transport_bm PATH
+#
+#
+# !EXAMPLE:
+#  ./copy_1yr_transport_bm /n/holyscratch01/external_repos/GEOS-CHEM/gcgrid/geos-chem/1yr_benchmarks/13.2.0-beta.0/GCClassic/TransportTracers
+#
+# !REMARKS:
+#
+# !REVISION HISTORY: 
+#  25 Jan 2018 - M. Sulprizio- Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+# Make sure the version string is passed
+if [ $# != 1 ]; then 
+   echo "Usage: copy_1yr_transport_bm PATH"
+   exit 0
+fi
+
+# Set variables
+dir=$1
+
+# Make the directory if it does not exist
+if [ ! -d $dir ]; then
+  echo "Creating $dir"
+  mkdir $dir
+  chgrp jacob_gcst $dir
+  chmod 775 $dir
+fi
+
+echo "======================================================================="
+echo "Copying 1-year Tracer Transport benchmark run directory to $dir"
+echo "======================================================================="
+echo " "
+
+# Copy contents of 1-year benchmark run directory
+cp -avL *tar.gz $dir/
+cp -avL BenchmarkResults $dir/
+cp -avL README $dir/
+
+# Change group name of new directories and files
+chgrp jacob_gcst $dir/*
+chgrp jacob_gcst $dir/*/*
+chgrp jacob_gcst $dir/*/*/*
+chgrp jacob_gcst $dir/*/*/*/*
+
+# Change permissions of new directories and files
+chmod 664 $dir/*
+chmod 775 $dir/BenchmarkResults
+chmod 775 $dir/BenchmarkResults/*
+chmod 664 $dir/BenchmarkResults/*yml
+chmod 775 $dir/BenchmarkResults/*/*
+chmod 664 $dir/BenchmarkResults/*/*txt
+chmod 664 $dir/BenchmarkResults/*/*pdf
+chmod 664 $dir/BenchmarkResults/*/*/*
+
+echo " "
+echo "==========================================================="
+echo "Done copying Tracer Transport 1-year benchmark run directory"
+echo "==========================================================="
+
+# Exit normally
+exit 0
+#EOC
