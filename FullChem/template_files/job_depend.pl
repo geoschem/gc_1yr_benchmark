@@ -35,24 +35,24 @@ my $jobId  = "";
 
 # Arrays
 my @subStr = ();
-my @jobs   = qw/GCC_14.0.0-rc.3.201807
-                GCC_14.0.0-rc.3.201808
-                GCC_14.0.0-rc.3.201809
-                GCC_14.0.0-rc.3.201810
-                GCC_14.0.0-rc.3.201811
-                GCC_14.0.0-rc.3.201812
-                GCC_14.0.0-rc.3.201901
-                GCC_14.0.0-rc.3.201902
-                GCC_14.0.0-rc.3.201903
-                GCC_14.0.0-rc.3.201904
-                GCC_14.0.0-rc.3.201905
-                GCC_14.0.0-rc.3.201906
-                GCC_14.0.0-rc.3.201907
-                GCC_14.0.0-rc.3.201908
-                GCC_14.0.0-rc.3.201909
-                GCC_14.0.0-rc.3.201910
-                GCC_14.0.0-rc.3.201911
-                GCC_14.0.0-rc.3.201912
+my @jobs   = qw/GCC_X.Y.Z-rc.N.201807
+                GCC_X.Y.Z-rc.N.201808
+                GCC_X.Y.Z-rc.N.201809
+                GCC_X.Y.Z-rc.N.201810
+                GCC_X.Y.Z-rc.N.201811
+                GCC_X.Y.Z-rc.N.201812
+                GCC_X.Y.Z-rc.N.201901
+                GCC_X.Y.Z-rc.N.201902
+                GCC_X.Y.Z-rc.N.201903
+                GCC_X.Y.Z-rc.N.201904
+                GCC_X.Y.Z-rc.N.201905
+                GCC_X.Y.Z-rc.N.201906
+                GCC_X.Y.Z-rc.N.201907
+                GCC_X.Y.Z-rc.N.201908
+                GCC_X.Y.Z-rc.N.201909
+                GCC_X.Y.Z-rc.N.201910
+                GCC_X.Y.Z-rc.N.201911
+                GCC_X.Y.Z-rc.N.201912
 /;
 
 # Loop over jobs

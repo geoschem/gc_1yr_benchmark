@@ -35,17 +35,17 @@ my $jobId  = "";
 
 # Arrays
 my @subStr = ();
-my @jobs   = qw/GCC_14.0.0-rc.3-TransportTracers.2009
-                GCC_14.0.0-rc.3-TransportTracers.2010
-                GCC_14.0.0-rc.3-TransportTracers.2011
-                GCC_14.0.0-rc.3-TransportTracers.2012
-                GCC_14.0.0-rc.3-TransportTracers.2013
-                GCC_14.0.0-rc.3-TransportTracers.2014
-                GCC_14.0.0-rc.3-TransportTracers.2015
-                GCC_14.0.0-rc.3-TransportTracers.2016
-                GCC_14.0.0-rc.3-TransportTracers.2017
-                GCC_14.0.0-rc.3-TransportTracers.2018
-                GCC_14.0.0-rc.3-TransportTracers.2019/;
+my @jobs   = qw/GCC_X.Y.Z-rc.N-TransportTracers.2009
+                GCC_X.Y.Z-rc.N-TransportTracers.2010
+                GCC_X.Y.Z-rc.N-TransportTracers.2011
+                GCC_X.Y.Z-rc.N-TransportTracers.2012
+                GCC_X.Y.Z-rc.N-TransportTracers.2013
+                GCC_X.Y.Z-rc.N-TransportTracers.2014
+                GCC_X.Y.Z-rc.N-TransportTracers.2015
+                GCC_X.Y.Z-rc.N-TransportTracers.2016
+                GCC_X.Y.Z-rc.N-TransportTracers.2017
+                GCC_X.Y.Z-rc.N-TransportTracers.2018
+                GCC_X.Y.Z-rc.N-TransportTracers.2019/;
 
 # Loop over jobs
 foreach $job ( @jobs ) {
