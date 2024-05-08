@@ -41,26 +41,26 @@ if [[ -f $infile ]]; then
 
     for i in $(seq 1 $nruns); do
 
-    yr=$((year+$((i-1))))
-    if [[ $i -ge 10 ]]; then
-        run="${i}"
-    else
-        run="0${i}"
-    fi
+        yr=$((year+$((i-1))))
+        if [[ $i -ge 10 ]]; then
+            run="${i}"
+        else
+            run="0${i}"
+        fi
 
-    # Replace run number in run script
-    cp $infile run.tmp
-    sed -i -e "s/{CDATE}/${yr}/g"       run.tmp
-    sed -i -e "s/{VERSTR}/${version}/g" run.tmp
-    sed -i -e "s/{STYEAR}/${yr}/g"      run.tmp
-    sed -i -e "s/{RUNSTR}/${RUN}/g"     run.tmp
-    echo " -- ${version}.${yr}"
-    mv run.tmp "${version}.${yr}"
+        # Replace run number in run script
+        cp $infile run.tmp
+        sed -i -e "s/{CDATE}/${yr}/g"       run.tmp
+        sed -i -e "s/{VERSTR}/${version}/g" run.tmp
+        sed -i -e "s/{STYEAR}/${yr}/g"      run.tmp
+        sed -i -e "s/{RUNSTR}/${RUN}/g"     run.tmp
+        echo " -- ${version}.${yr}"
+        mv run.tmp "${version}.${yr}"
       
     done
 
     # Make scripts executable
-    chmod 755 "${version}.*"
+    chmod 755 ${version}.*
 
 else
     echo "Could not find input file: ${infile}"

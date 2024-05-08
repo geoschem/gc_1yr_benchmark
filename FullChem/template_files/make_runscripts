@@ -23,18 +23,18 @@
 infile="run.template"
 
 if [[ $# == 4 ]]; then
-   version=$1
-   year1=$2
-   month1=$3
-   nruns=$4
+    version=$1
+    year1=$2
+    month1=$3
+    nruns=$4
 elif [[ $# == 3 ]]; then
-   version=$1
-   year1=$2
-   month1=$3
-   nruns=24
+    version=$1
+    year1=$2
+    month1=$3
+    nruns=24
 else
-   echo "Usage: make_runscripts VERSION START-YEAR START-MONTH [NUMBER-OF-RUNS]"
-   exit 1
+    echo "Usage: make_runscripts VERSION START-YEAR START-MONTH [NUMBER-OF-RUNS]"
+    exit 1
 fi
 
 Floor () {
@@ -46,57 +46,57 @@ Floor () {
 
 echo "Creating $nruns run scripts from $infile"
 
-if [ -f $infile ]; then
+if [[ -f $infile ]]; then
 
-   for i in $(seq 1 $nruns); do
+    for i in $(seq 1 $nruns); do
 
-      # Define run string
-      if [ $i -ge 10 ]; then
-         RUN=$i
-      else
-	 RUN="0"$i
-      fi
+        # Define run string
+	if [ $i -ge 10 ]; then
+            RUN=$i
+	else
+	    RUN="0"$i
+	fi
 
-      # Set dates
-      MONTH=$((month1 + i - 1))
+	# Set dates
+	MONTH=$((month1 + i - 1))
 
-      if [ $MONTH -gt 12 ]; then
-	 if (( $MONTH % 12 == 0 )); then
-            NYEAR=$(expr $MONTH / 12 - 1 )
-         else
-	    NYEAR=$( Floor $MONTH 12 )
-	 fi
-	 YEAR=$((year1 + NYEAR))
-	 MONTH=$((MONTH - (12 * NYEAR)))
-      else
-	 YEAR=$year1
-      fi
+	if [ $MONTH -gt 12 ]; then
+	    if (( $MONTH % 12 == 0 )); then
+		NYEAR=$(expr $MONTH / 12 - 1 )
+            else
+		NYEAR=$( Floor $MONTH 12 )
+	    fi
+	    YEAR=$((year1 + NYEAR))
+	    MONTH=$((MONTH - (12 * NYEAR)))
+	else
+	    YEAR=$year1
+	fi
 
-      if [ $MONTH -ge 10 ]; then
-         DATE1="${YEAR}${MONTH}"
-      else
-         DATE1="${YEAR}0${MONTH}"
-      fi
-      #echo $DATE1
+	if [ $MONTH -ge 10 ]; then
+            DATE1="${YEAR}${MONTH}"
+	else
+            DATE1="${YEAR}0${MONTH}"
+	fi
+	#echo $DATE1
 
-      # Replace run number in run script
-      cp $infile run.tmp
-      sed -i -e "s/{CDATE}/${DATE1}/g"    run.tmp
-      sed -i -e "s/{VERSTR}/${version}/g" run.tmp
-      sed -i -e "s/{STYEAR}/${YEAR}/g"    run.tmp
-      sed -i -e "s/{STMONTH}/${MONTH}/g"  run.tmp
-      sed -i -e "s/{RUNSTR}/${RUN}/g"     run.tmp
-      echo " -- $version.$DATE1"
-      mv run.tmp "$version.${DATE1}"
+	# Replace run number in run script
+	cp $infile run.tmp
+	sed -i -e "s/{CDATE}/${DATE1}/g"    run.tmp
+	sed -i -e "s/{VERSTR}/${version}/g" run.tmp
+	sed -i -e "s/{STYEAR}/${YEAR}/g"    run.tmp
+	sed -i -e "s/{STMONTH}/${MONTH}/g"  run.tmp
+	sed -i -e "s/{RUNSTR}/${RUN}/g"     run.tmp
+	echo " -- $version.$DATE1"
+	mv run.tmp "$version.${DATE1}"
 
-   done
+    done
 
-   # Make scripts executable
-   chmod 755 "${version}.*"
+    # Make scripts executable
+    chmod 755 ${version}.*
 
 else
-   echo "Could not find input file: $infile"
-   exit 1
+    echo "Could not find input file: $infile"
+    exit 1
 fi
 
 # Exit normally
