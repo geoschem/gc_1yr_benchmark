@@ -7,7 +7,7 @@
 #
 # !MODULE: setup_1yr_run
 #
-# !DESCRIPTION: Sets up a run directory for a 1-year simulation
+# !DESCRIPTION: Sets up a run directory for a 1-year FullChem simulation
 #\\
 #\\
 # !CALLING SEQUENCE:
@@ -20,10 +20,14 @@
 #BOC
 
 #----------------------------------------------------------------
-# Define version name
+# Configurable settings (edit accordingly)
 #----------------------------------------------------------------
 
-BM_VERSION="GCC_14.2.0-rc.1"  # Benchmark long version name
+BM_VERSION="GCC_X.Y.Z-rc.N"  # Benchmark long version name
+
+GCPY_ROOT="~/gcpy"
+
+THIS_REPO_ROOT="~/GC/gc_1yr_benchmark_scripts"
 
 START_YR=2018
 START_MON=7
@@ -37,12 +41,12 @@ echo "==========================================================="
 echo ""
 
 #----------------------------------------------------------------
-# Create subdirectories
+# Create subdirectories if they do not exist
 #----------------------------------------------------------------
-mkdir -v Config            # For *.yml files
-mkdir -v Logs              # For *.log files
-mkdir -v RunScripts        # For run scripts  
-mkdir -v BenchmarkResults  # For GCPy output
+[[ ! -d Config           ]] && mkdir -v Config            # For *.yml files
+[[ ! -d Logs             ]] && mkdir -v Logs              # For *.log files
+[[ ! -d RunScripts       ]] && mkdir -v RunScripts        # For run scripts
+[[ ! -d BenchmarkResults ]] && mkdir -v BenchmarkResults  # For GCPy output
 
 #----------------------------------------------------------------
 # Remove unnecessary files
@@ -66,12 +70,12 @@ NEW1="{DATE1}"
 OLD2="20190801"
 NEW2="{DATE2}"
 
-cp geoschem_config.yml $inFile
+cp geoschem_config.yml "${inFile}"
 
 # Replace text
-echo -e "Replacing text in $inFile\n"
-sed -i -e "s/$OLD1/$NEW1/g" "$inFile"
-sed -i -e "s/$OLD2/$NEW2/g" "$inFile"
+echo -e "Replacing text in ${inFile}\n"
+sed -i -e "s/${OLD1}/${NEW1}/g" "${inFile}"
+sed -i -e "s/${OLD2}/${NEW2}/g" "${inFile}"
 
 # Move back to top-level run directory
 rm geoschem_config.yml
@@ -111,22 +115,22 @@ OLD9="#'CloudConvFlux"
 NEW9="'CloudConvFlux"
 
 # Replace text
-echo -e "Replacing text in $inFile\n"
-sed -i -e "s/$OLD3/$NEW3/g" "$inFile"
-sed -i -e "s/$OLD4/$NEW4/g" "$inFile"
-sed -i -e "s/$OLD5/$NEW5/g" "$inFile"
-sed -i -e "s/$OLD6/$NEW6/g" "$inFile"
-sed -i -e "s/$OLD7/$NEW7/g" "$inFile"
-sed -i -e "s/$OLD8/$NEW8/g" "$inFile"
-sed -i -e "s/$OLD9/$NEW9/g" "$inFile"
+echo -e "Replacing text in ${inFile}\n"
+sed -i -e "s/$OLD3/$NEW3/g" "${inFile}"
+sed -i -e "s/$OLD4/$NEW4/g" "${inFile}"
+sed -i -e "s/$OLD5/$NEW5/g" "${inFile}"
+sed -i -e "s/$OLD6/$NEW6/g" "${inFile}"
+sed -i -e "s/$OLD7/$NEW7/g" "${inFile}"
+sed -i -e "s/$OLD8/$NEW8/g" "${inFile}"
+sed -i -e "s/$OLD9/$NEW9/g" "${inFile}"
 
 #----------------------------------------------------------------
 # Set up run scripts
 #----------------------------------------------------------------
 echo -e "Setting up run scripts\n"
-cp ~/GC/benchmarks/1yr/template_files/run.template RunScripts/
-cp ~/GC/benchmarks/1yr/template_files/make_runscripts RunScripts/
-cp ~/GC/benchmarks/1yr/template_files/job_depend.pl RunScripts/
+cp ${THIS_REPO_ROOT}/FullChem/template_files/run.template RunScripts/
+cp ${THIS_REPO_ROOT}/FullChem/template_files/make_runscripts RunScripts/
+cp ${THIS_REPO_ROOT}/FullChem/template_files/job_depend.pl RunScripts/
 cd RunScripts
 ./make_runscripts ${BM_VERSION} ${START_YR} ${START_MON} ${N_MONTHS}
 cd ..
@@ -135,9 +139,9 @@ cd ..
 # Copy other necessary files
 #----------------------------------------------------------------
 echo -e "Setting up run scripts\n"
-cp ~/GC/benchmarks/1yr/template_files/pack_1yr_run .
-cp ~/GC/benchmarks/1yr/template_files/copy_1yr_run .
-cp ~/gcpy/benchmark/config/1yr_fullchem_benchmark.yml BenchmarkResults/
+cp ${THIS_REPO_ROOT}/FullChem/template_files/pack_1yr_run .
+cp ${THIS_REPO_ROOT}/FullChem/template_files/copy_1yr_run .
+cp ${GCPY_ROOT}/gcpy/benchmark/config/1yr_fullchem_benchmark.yml BenchmarkResults/
 
 echo "==========================================================="
 echo "DONE CREATING 1-YR RUN DIRECTORY"
