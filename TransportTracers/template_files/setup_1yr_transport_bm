@@ -26,9 +26,9 @@
 
 BM_VERSION="GCC_X.Y.Z-rc.N-TransportTracers"   # Benchmark long version name
 
-GCPY_ROOT="~/gcpy"
+GCPY_ROOT="$HOME/gcpy"
 
-THIS_REPO_ROOT="~/GC/gc_1yr_benchmark_scripts"
+THIS_REPO_ROOT="$HOME/GC/gc_1yr_benchmark_scripts"
 
 START_YR=2009
 N_YEARS=11
