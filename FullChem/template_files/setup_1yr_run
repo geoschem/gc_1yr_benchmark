@@ -58,7 +58,7 @@ rm -rf geoschem.benchmark.run
 # Set up geoschem_config.yml files
 #----------------------------------------------------------------
 echo -e "Setting up geoschem_config.yml\n"
-mv geoschem_config.yml Config/
+[[ -f geoschem_config.yml ]] && mv geoschem_config.yml Config/
 cd Config
 
 inFile="geoschem_config.yml.template"
@@ -70,7 +70,7 @@ NEW1="{DATE1}"
 OLD2="20190801"
 NEW2="{DATE2}"
 
-cp geoschem_config.yml "${inFile}"
+[[ -f geoschem_config.yml ]] && cp geoschem_config.yml "${inFile}"
 
 # Replace text
 echo -e "Replacing text in ${inFile}\n"
@@ -78,7 +78,7 @@ sed -i -e "s/${OLD1}/${NEW1}/g" "${inFile}"
 sed -i -e "s/${OLD2}/${NEW2}/g" "${inFile}"
 
 # Move back to top-level run directory
-rm geoschem_config.yml
+rm -f geoschem_config.yml
 cd ..
 
 #----------------------------------------------------------------
