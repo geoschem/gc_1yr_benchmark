@@ -7,7 +7,8 @@
 #
 # !MODULE: setup_1yr_run
 #
-# !DESCRIPTION: Sets up a run directory for a 1-year FullChem simulation
+# !DESCRIPTION: Sets up a run directory for a 1-year full-chemistry
+#  benchmark simulation.
 #\\
 #\\
 # !CALLING SEQUENCE:

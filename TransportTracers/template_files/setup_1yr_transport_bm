@@ -7,8 +7,7 @@
 #
 # !MODULE: setup_1yr_transport_bm
 #
-# !DESCRIPTION: Sets up a 1-yr Transport Tracers benchmark simulation
-#  created by the GEOS-Chem unit tester.
+# !DESCRIPTION: Sets up a 1-yr Transport Tracers benchmark simulation.
 #\\
 #\\
 # !CALLING SEQUENCE:
@@ -80,9 +79,8 @@ cd ..
 #----------------------------------------------------------------
 echo -e "Setting up diagnostics in HISTORY.rc\n"
 
-# Need to replace the following text
-sed -i -e "s/Restart.frequency:          'End',/Restart.frequency:          00000100 000000/ig" HISTORY.rc
-sed -i -e "s/Restart.duration:           'End',/Restart.duration:           00000100 000000/ig" HISTORY.rc
+# Replace "'End'" with monthly restart output
+sed -i -e "s/'End'\,/00000100 000000/g" HISTORY.rc
 
 #----------------------------------------------------------------
 # Set up run scripts

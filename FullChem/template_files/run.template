@@ -15,7 +15,7 @@
 # !IROUTINE: {VERSTR}.{CDATE}
 #
 # !DESCRIPTION: Submits a 1-year benchmark simulation and sends output to
-#  the "logs" directory.
+#  the "Logs" directory.
 #\\
 #\\
 # !CALLING SEQUENCE:
@@ -93,9 +93,9 @@ RES="./Restarts/GEOSChem.Restart.${DATE1}_0000z.nc4"
 LOG="./Logs/log.${DATE1}"
 
 # Create input file
-if [[ -f $YML ]]; then
+if [[ -f ${YML} ]]; then
   # Replace date and time tokens in input.geos.template files
-  cp $INP tmp.yml
+  cp ${YML} tmp.yml
   sed -i -e "s/{DATE1}/$DATE1/g" tmp.yml
   sed -i -e "s/{DATE2}/$DATE2/g" tmp.yml
   sed -i -e "s/{TIME1}/$TIME1/g" tmp.yml
@@ -122,14 +122,14 @@ fi
 
 # Run the code
 if [[ -f $RES ]]; then
-  srun -c ${SLURM_CPUS_PER_TASK} ./gcclassic >> $LOG
+  srun -c ${SLURM_CPUS_PER_TASK} ./gcclassic >> ${LOG}
 else
   echo "Could not find restart file: $RES"
   exit 1
 fi
 
 # Move HEMCO.log and input.geos files to logs directory
-mv -v geoschem_config.yml ./Config/geoschem_config.yml.$DATE1
+mv -v geoschem_config.yml ./Config/geoschem_config.yml.${DATE1}
 
 # Exit normally
 exit 0

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -c 12
+#SBATCH -c 24
 #SBATCH -N 1
 #SBATCH -t 0-12:00
 #SBATCH -p sapphire,huce_cascade,seas_compute,shared
@@ -14,8 +14,8 @@
 #
 # !IROUTINE: {VERSTR}.{CDATE}
 #
-# !DESCRIPTION: Submits a 1-yr Transport Tracers benchmark simulation and sends
-#  output to the "logs" directory.
+# !DESCRIPTION: Submits a 1-yr Transport Tracers benchmark simulation
+#  and sends output to the "Logs" directory.
 #\\
 #\\
 # !CALLING SEQUENCE:
@@ -96,15 +96,15 @@ if [[ "x${RUN}" == "x01" ]]; then
 fi
 
 # Run the code
-if [[ -f $RES ]]; then
-    srun -c ${SLURM_CPUS_PER_TASK} ./gcclassic >> $LOG
+if [[ -f ${RES} ]]; then
+    srun -c ${SLURM_CPUS_PER_TASK} ./gcclassic >> ${LOG}
 else
     echo "Could not find restart file: $RES"
     exit 1
 fi
 
 # Archive HEMCO.log and geoschem_config.yml files
-mv -v geoschem_config.yml ./Config/geoschem_config.yml.$DATE1
+mv -v geoschem_config.yml ./Config/geoschem_config.yml.${DATE1}
 
 # Exit normally
 exit 0

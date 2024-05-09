@@ -7,7 +7,8 @@
 #
 # !MODULE: make_runscripts
 #
-# !DESCRIPTION: Creates run scripts for a 1-year Rn-Pb-Be benchmark simulation
+# !DESCRIPTION: Creates run scripts for a 1-year TransportTracers benchmark
+# simulation, with 10 years of spinup.
 #\\
 #\\
 # !CALLING SEQUENCE:
