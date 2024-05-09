@@ -110,6 +110,7 @@ sed -i -e "s/EFYO/CYS/g" HEMCO_Config.rc
 cp ${THIS_REPO_ROOT}/TransportTracers/template_files/pack_1yr_transport_bm .
 cp ${THIS_REPO_ROOT}/TransportTracers/template_files/copy_1yr_transport_bm .
 cp ${GCPY_ROOT}/gcpy/benchmark/config/1yr_tt_benchmark.yml BenchmarkResults/
+cp ${GCPY_ROOT}/gcpy/benchmark/benchmark_slurm.sh BenchmarkResults/
 
 echo "==========================================================="
 echo "DONE UPDATING 1-YR TransportTracers BENCHMARK RUN DIRECTORY"

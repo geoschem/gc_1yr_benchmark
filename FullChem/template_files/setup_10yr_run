@@ -150,6 +150,7 @@ echo -e "Setting up run scripts\n"
 cp ${THIS_REPO_ROOT}/FullChem/template_files/pack_1yr_run .
 cp ${THIS_REPO_ROOT}/FullChem/template_files/copy_1yr_run .
 cp ${GCPY_ROOT}/gcpy/benchmark/config/1yr_fullchem_benchmark.yml BenchmarkResults/
+cp ${GCPY_ROOT}/gcpy/benchmark/benchmark_slurm.sh BenchmarkResults/
 
 echo "==========================================================="
 echo "DONE CREATING 10-YR RUN DIRECTORY"
