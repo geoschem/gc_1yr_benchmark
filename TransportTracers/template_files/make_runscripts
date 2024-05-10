@@ -1,0 +1,74 @@
+#!/bin/bash
+
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: make_runscripts
+#
+# !DESCRIPTION: Creates run scripts for a 1-year TransportTracers benchmark
+# simulation, with 10 years of spinup.
+#\\
+#\\
+# !CALLING SEQUENCE:
+#  make_runscripts VERSION START-YEAR [NUMBER-OF-RUNS]
+#
+# !REVISION HISTORY: 
+#  03 Mar 2016 - M. Sulprizio- Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+# Template run script
+infile="run.template"
+
+if [[ $# == 3 ]]; then
+    version=$1
+    year=$2
+    nruns=$3
+elif [[ $# == 2 ]]; then
+    version=$1
+    year=$2
+    nruns=11
+else
+    echo "Usage: make_runscripts VERSION START-YEAR [NUMBER-OF-RUNS]"
+    exit 1
+fi
+
+echo "Creating $nruns run scripts from $infile"
+
+if [[ -f $infile ]]; then
+
+    for i in $(seq 1 $nruns); do
+
+        yr=$((year+$((i-1))))
+        if [[ $i -ge 10 ]]; then
+            run="${i}"
+        else
+            run="0${i}"
+        fi
+
+        # Replace run number in run script
+        cp $infile run.tmp
+        sed -i -e "s/{CDATE}/${yr}/g"       run.tmp
+        sed -i -e "s/{VERSTR}/${version}/g" run.tmp
+        sed -i -e "s/{STYEAR}/${yr}/g"      run.tmp
+        sed -i -e "s/{RUNSTR}/${run}/g"     run.tmp
+        echo " -- ${version}.${yr}"
+        mv run.tmp "${version}.${yr}"
+      
+    done
+
+    # Make scripts executable
+    chmod 755 ${version}.*
+
+else
+    echo "Could not find input file: ${infile}"
+    exit 1
+fi
+
+# Exit normally
+exit 0
+
+#EOC

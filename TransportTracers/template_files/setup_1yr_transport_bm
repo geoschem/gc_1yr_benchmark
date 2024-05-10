@@ -1,0 +1,121 @@
+#!/bin/bash
+
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: setup_1yr_transport_bm
+#
+# !DESCRIPTION: Sets up a 1-yr Transport Tracers benchmark simulation.
+#\\
+#\\
+# !CALLING SEQUENCE:
+#  ./setup_1yr_transport_bm
+#
+# !REVISION HISTORY:
+#  14 Feb 2018 - M. Sulprizio- Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+#----------------------------------------------------------------
+# Configurable settings (edit accordingly)
+#----------------------------------------------------------------
+
+BM_VERSION="GCC_X.Y.Z-rc.N-TransportTracers"   # Benchmark long version name
+
+GCPY_ROOT="$HOME/gcpy"
+
+THIS_REPO_ROOT="$HOME/GC/benchmarks/1yr"
+
+START_YR=2009
+N_YEARS=11
+
+TEMP="temp.txt"
+
+echo "==========================================================="
+echo "CREATING 1-YR RUN DIRECTORY for $BM_VERSION"
+echo "==========================================================="
+echo ""
+
+#----------------------------------------------------------------
+# Create subdirectories if they do not exist
+#----------------------------------------------------------------
+[[ ! -d Config           ]] && mkdir -v Config            # For *.yml files
+[[ ! -d Logs             ]] && mkdir -v Logs              # For *.log files
+[[ ! -d RunScripts       ]] && mkdir -v RunScripts        # For run scripts
+[[ ! -d BenchmarkResults ]] && mkdir -v BenchmarkResults  # For GCPy output
+
+#----------------------------------------------------------------
+# Set up geoschem_config.yml files
+#----------------------------------------------------------------
+echo -e "Setting up geoschem_config.yml\n"
+[[ -f geoschem_config.yml ]] && mv geoschem_config.yml Config/
+cd Config
+
+inFile="geoschem_config.yml.template"
+
+# Need to replace the following text
+OLD1="20190101"
+NEW1="{DATE1}"
+
+OLD2="20190201"
+NEW2="{DATE2}"
+
+[[ -f geoschem_config.yml ]] && cp geoschem_config.yml ${inFile}
+
+# Replace text
+echo -e "Replacing text in ${inFile}\n"
+sed -i -e "s/${OLD1}/${NEW1}/g" "${inFile}"
+sed -i -e "s/${OLD2}/${NEW2}/g" "${inFile}"
+
+# Move back to top-level run directory
+rm -f geoschem_config.yml
+cd ..
+
+#----------------------------------------------------------------
+# Set up HISTORY.rc
+#----------------------------------------------------------------
+echo -e "Setting up diagnostics in HISTORY.rc\n"
+
+# Replace "'End'" with monthly restart output
+sed -i -e "s/'End'\,/00000100 000000/g" HISTORY.rc
+
+#----------------------------------------------------------------
+# Set up run scripts
+#----------------------------------------------------------------
+echo -e "Setting up run scripts\n"
+cp ${THIS_REPO_ROOT}/TransportTracers/template_files/run.template RunScripts/
+cp ${THIS_REPO_ROOT}/TransportTracers/template_files/make_runscripts RunScripts/
+cp ${THIS_REPO_ROOT}/TransportTracers/template_files/job_depend.pl RunScripts/
+cd RunScripts
+./make_runscripts "${BM_VERSION}" "${START_YR}" "${N_YEARS}"
+sed -i -e "s/GCC_X\.Y\.Z\-rc\.N\-TransportTracers/${BM_VERSION}/g" job_depend.pl
+cd ..
+
+#----------------------------------------------------------------
+# Rename restart file to start date
+#----------------------------------------------------------------
+if [[ -f "Restarts/GEOSChem.Restart.20190101_0000z.nc4" ]]; then
+    mv "Restarts/GEOSChem.Restart.20190101_0000z.nc4" "Restarts/GEOSChem.Restart.${START_YR}0101_0000z.nc4"
+fi
+
+# Modify HEMCO_Config.rc to accept a restart file for a different year
+sed -i -e "s/EFYO/CYS/g" HEMCO_Config.rc
+
+#----------------------------------------------------------------
+# Copy other necessary files
+#----------------------------------------------------------------
+cp ${THIS_REPO_ROOT}/TransportTracers/template_files/pack_1yr_transport_bm .
+cp ${THIS_REPO_ROOT}/TransportTracers/template_files/copy_1yr_transport_bm .
+cp ${GCPY_ROOT}/gcpy/benchmark/config/1yr_tt_benchmark.yml BenchmarkResults/
+cp ${GCPY_ROOT}/gcpy/benchmark/benchmark_slurm.sh BenchmarkResults/
+
+echo "==========================================================="
+echo "DONE UPDATING 1-YR TransportTracers BENCHMARK RUN DIRECTORY"
+echo "==========================================================="
+
+# Exit normally
+exit 0
+#EOC
