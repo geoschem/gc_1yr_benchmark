@@ -53,6 +53,7 @@ echo "==========================================================="
 echo "Moving config files to Config/"
 mv -v *.rc* ./Config/
 mv -v *.yml ./Config/
+cp -v ./Config/species_database.yml .  # Leave a copy in the run dir
 echo "Compressing Config"
 tar zcvf Config.tar.gz Config
 #rm -rfv Config
