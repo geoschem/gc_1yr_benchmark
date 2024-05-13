@@ -50,7 +50,7 @@ echo " "
 # Copy contents of 1-year benchmark run directory
 cp -avL *tar.gz $dir/
 cp -avL BenchmarkResults $dir/
-cp -avL README $dir/
+cp -avL README.md $dir/
 
 # Change group name of new directories and files
 chgrp jacob_gcst $dir/*
