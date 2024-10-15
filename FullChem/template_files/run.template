@@ -2,9 +2,9 @@
 
 #SBATCH -c 48
 #SBATCH -N 1
-#SBATCH -t 0-24:00
+#SBATCH -t 0-6:00
 #SBATCH -p huce_cascade,seas_compute,shared
-#SBATCH --mem=132000
+#SBATCH --mem=28000
 #SBATCH --mail-type=END
 
 #------------------------------------------------------------------------------
